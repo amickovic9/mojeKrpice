@@ -32,9 +32,26 @@ class ProductController extends Controller
         Product::create($product);
         return redirect('/')->with('success', 'You have succesfully posted your product!');
     }
-    public function  showAllProducts()
+    public function  showAllProducts(Request $request)
     {
-        $products = Product::orderBy('created_at', 'desc')->get();
+        if (isset($request->sort)) {
+            $sort = $request->sort;
+            if ($sort == "price_asc") {
+                $products = Product::orderBy('price', 'asc')->get();
+            }
+            if ($sort == 'price_desc') {
+                $products = Product::orderBy('price', 'desc')->get();
+            }
+            if ($sort == 'date_asc') {
+                $products = Product::orderBy('created_at', 'asc')->get();
+            }
+            if ($sort == 'date_desc') {
+                $products = Product::orderBy('created_at', 'desc')->get();
+            }
+        } else {
+            $products = Product::all();
+        }
+
         return view('product.show-all-products', ['products' => $products]);
     }
 }
