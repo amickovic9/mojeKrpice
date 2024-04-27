@@ -47,10 +47,9 @@
                     <img src="{{ asset('uploads/' . $product->image) }}" class="card-img-top" alt="Product Image">
                     <div class="card-body">
                         <h5 class="card-title">{{ $product->name }}</h5>
-                        <p class="card-text">{{ $product->description }}</p>
-                        <p class="card-text">{{ $product->contact }}</p>
                         <p class="card-text">{{ $product->size }}</p>
                         <p class="card-text">{{ $product->price }} rsd</p>
+                        <a href = "/product/{{$product->id}}">Show more</a>
                     </div>
                 </div>
             </div>

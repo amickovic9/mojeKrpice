@@ -32,10 +32,7 @@
                                 <label for="size" class="form-label">Size</label>
                                 <input type="text" id="size" name="size" class="form-control" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="contact" class="form-label">Contact</label>
-                                <input type="text" id="contact" name="contact" class="form-control" required>
-                            </div>
+                           
                             <div class="mb-3">
                                 <label for="contact" class="form-label">Price in rsd</label>
                                 <input type="text" id="contact" name="price" class="form-control" required>

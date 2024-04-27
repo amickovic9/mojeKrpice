@@ -33,7 +33,6 @@
                         <h5 class="card-title">{{ $product->name }}</h5>
                         <p class="card-text">Description: {{ $product->description }}</p>
                         <p class="card-text">Size: {{ $product->size }}</p>
-                        <p class="card-text">Contact: {{ $product->contact }}</p>
                         <p class="card-text">Price: {{ $product->price }}</p>
                     </div>
                 </div>

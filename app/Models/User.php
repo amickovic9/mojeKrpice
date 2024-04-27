@@ -27,7 +27,14 @@ class User extends Authenticatable
         'admin',
         'password',
     ];
-
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+    public function cart()
+    {
+        return $this->hasMany(Cart::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

@@ -18,7 +18,6 @@ class ProductController extends Controller
             'name' => 'required',
             'description' => 'required',
             'size' => 'required',
-            'contact' => 'required',
             'price' => 'required',
             'image' => '|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
@@ -53,5 +52,9 @@ class ProductController extends Controller
         }
 
         return view('product.show-all-products', ['products' => $products]);
+    }
+    public function showProduct(Product $product)
+    {
+        return view('product.product', ['product' => $product]);
     }
 }

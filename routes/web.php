@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +24,15 @@ Route::post('/register', [HomeController::class, 'register']);
 Route::get('/login', [HomeController::class, 'showLoginPage']);
 Route::post('/login', [HomeController::class, 'login']);
 Route::get('/logout', [HomeController::class, 'logout']);
+Route::get('/product/{product}', [ProductController::class, 'showProduct']);
 
 //Prouct routes
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/add-product', [ProductController::class, 'showAddProductPage']);
     Route::post('/add-product', [ProductController::class, 'addProduct']);
+    Route::post('/add-to-cart/{product}', [CartController::class, 'addToCart']);
+    Route::get('/my-cart', [CartController::class, 'showMyCart']);
 });
 
 Route::get('/all-products', [ProductController::class, 'showAllProducts']);
