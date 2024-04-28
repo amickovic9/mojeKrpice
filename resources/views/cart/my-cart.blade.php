@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Cart</title>
-    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .total-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .product-image {
+            max-width: 100px;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,7 +32,9 @@
                     <tr>
                         <th>Product</th>
                         <th>Price</th>
-                        <th></th> <!-- Dodajemo praznu kolonu za ikonicu -->
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,26 +43,35 @@
                         <td>{{ $product->name }}</td>
                         <td>${{ $product->price }}</td>
                         <td class="text-right">
-                            <a href="/remove-from-cart/{{ $product->id }}" class="btn btn-link text-danger"><i class="fas fa-times"></i></a> <!-- Ikonica za uklanjanje proizvoda -->
+                            <img src="{{ asset('uploads/' . $product->image) }}" class="product-image" alt="Product Image">
+                        </td>
+                        <td class="text-right">
+                            <a href="/product/{{ $product->id }}" class="btn btn-link">Show Product</a>
+                        </td>
+                        <td class="text-right">
+                            <a href="/remove-from-cart/{{ $product->cart }}" class="btn btn-link text-danger"><i class="fas fa-times"></i></a>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3" class="text-right"><strong>Total: ${{ $total }}</strong></td> <!-- Uklanjamo liniju ispod ukupne sume -->
-                    </tr>
-                </tfoot>
             </table>
+            <div class="total-wrapper">
+                <strong>Total: ${{ $total }}</strong>
+            </div>
+            <div class="text-right mt-3">
+                <form action="/make-order" method="post">
+                    @csrf
+                    <input type="hidden" name="total" value={{$total}}>
+                    <button type="submit" class='btn btn-primary'>Order</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!-- Font Awesome JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 
 </body>

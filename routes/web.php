@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -33,6 +34,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/add-product', [ProductController::class, 'addProduct']);
     Route::post('/add-to-cart/{product}', [CartController::class, 'addToCart']);
     Route::get('/my-cart', [CartController::class, 'showMyCart']);
+    Route::get('/remove-from-cart/{cart}',[CartController::class,'removeFromCart']);
+    Route::post('/make-order',[OrderController::class,'showMakeOrderPage']);
+    Route::post('/submit-order',[OrderController::class,'makeOrder']);
+    Route::get('/my-products',[ProductController::class,'showMyProductsPage']);
+    Route::get('/delete-product/{product}',[ProductController::class,'deleteProduct']);
+    Route::get('/edit-product/{product}',[ProductController::class,'showEditProductPage']);
+    Route::post('/edit-product/{product}',[ProductController::class,'updateProduct']);
 });
 
 Route::get('/all-products', [ProductController::class, 'showAllProducts']);
