@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
+use App\Models\Product;
 
 
 use Illuminate\Http\Request;
@@ -30,10 +31,65 @@ class OrderController extends Controller
 
             $order['product_id']=$product->id;
             Order::create($order);
-            $product['available']=0;
+            $product['available']=true;
             $product->update();
             $cart->delete();
         }
         return redirect('/all-products')->with('success','You have placed order succesfully!');
+    }
+    public function updateOrder(Request $request, Order $order){
+        
+        $order['delivered']=$request->input('delivered');
+        if($order['delivered']){
+            $order['accepted']=true;
+        }
+        else{
+        $order['accepted']=$request->input('accepted');
+
+        }
+        if($order['accepted']==false){
+            $product= Product::where('id',$order['product_id'])->first();
+            $product['available']==true;
+            $product->update();
+        }
+        $order->save();
+        return redirect()->back();
+    }
+    public function showMyOrdersPage(){
+        $user = Auth::user();
+        $orders = Order::where('user_id', $user->id)->get();
+        return view('order.my-orders',['orders'=>$orders]);
+    }
+    public function showEditOrderPage(Order $order){
+        if ($order->user_id != Auth::user()->id || $order->accepted !== null) {
+            return redirect("/my-orders")->with('danger','You can edit only your orders!');
+        }
+        return view('order.edit-order',['order'=>$order]);
+    }
+    public function editOrder(Request $request){
+        $order = Order::where('id',$request->input('id'))->first();
+
+        if($order->user_id!=Auth::user()->id){
+            return redirect("/my-orders")->with('danger','You can edit only your orders and orders that are not accepted!');
+        }
+        $order['firstName'] = $request->input('firstName');
+        $order['lastName'] = $request->input('lastName');
+        $order['phone_number'] = $request->input('phone_number');
+        $order['address'] = $request->input('address');
+        $order['note'] = $request->input('note');
+        $order->update();
+        return redirect("/my-orders")->with('success','You have successfully edited your order!');
+
+    }
+    public function deleteOrder(Order $order){
+        if ($order->user_id != Auth::user()->id || $order->accepted !== null) {
+            return redirect("/my-orders")->with('danger','You can delete only not accepted and your orders!');
+        }
+        $product=$order->product->first();
+        $product['available']=true;
+        $product->update();
+
+        $order->delete();
+        return redirect("/my-orders")->with('success','You have deleted your order!');
     }
 }

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\File;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
+
 
 class ProductController extends Controller
 {
@@ -60,9 +62,24 @@ class ProductController extends Controller
         return view('product.product', ['product' => $product]);
     }
     public function showMyProductsPage(){
-        $products =Auth::user()->products()->get();
-        return view('product.my-products',['products'=>$products]);
+        $products = Auth::user()->products()->get();
+        
+        $ids = [];
+        foreach($products as $product){
+            $ids[] = $product->id;
+        }
+        
+        $orders = Order::whereIn('product_id', $ids)
+        ->where('delivered', 0)
+        ->where('accepted',  true)
+        ->orWhereNull('accepted')
+        ->orderBy('created_at', 'asc')
+        ->get();
+            
+        return view('product.my-products', ['products' => $products, 'orders' => $orders]);
     }
+    
+    
 
 
     public function deleteProduct(Product $product)

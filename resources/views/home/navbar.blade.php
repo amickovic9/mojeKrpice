@@ -41,7 +41,10 @@
                         <a class="nav-link" href="/my-cart">My Cart</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/my-products">My Products</a>
+                        <a class="nav-link" href="/my-orders">My orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/my-products">Products & Orders</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>

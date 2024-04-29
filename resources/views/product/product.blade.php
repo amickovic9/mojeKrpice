@@ -23,7 +23,9 @@
                     <p class="card-text">Price: ${{ $product->price }}</p>
                     <form action="/add-to-cart/{{$product->id}}" method ='post'>
                     @csrf
+                    @if($product->available)
                     <button type='submit' >Add To Cart </button>
+                    @endif
                     </form>
                 </div>
             </div>

@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('lastName');
             $table->string('phone_number');
             $table->boolean('accepted')->default(false);
-            $table->boolean('delivered')->default(false);
+            $table->boolean('delivered')->default(null);
             $table->string('note')->default(null);
             $table->timestamps();
         });

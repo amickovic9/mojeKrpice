@@ -41,6 +41,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/delete-product/{product}',[ProductController::class,'deleteProduct']);
     Route::get('/edit-product/{product}',[ProductController::class,'showEditProductPage']);
     Route::post('/edit-product/{product}',[ProductController::class,'updateProduct']);
+    Route::post('/update-order/{order}',[OrderController::class,'updateOrder']);
+    Route::get('/my-orders',[OrderController::class,'showMyOrdersPage']);
+    Route::get('/edit-order/{order}',[OrderController::class,'showEditOrderPage']);
+    Route::post('/edit-order/{order}',[OrderController::class,'editOrder']);
+    Route::get('/delete-order/{order}',[OrderController::class,'deleteOrder']);
 });
 
 Route::get('/all-products', [ProductController::class, 'showAllProducts']);
@@ -48,6 +53,11 @@ Route::get('/all-products', [ProductController::class, 'showAllProducts']);
 
 // Admin routes
 
-Route::middleware(['admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'showAdminPage']);
+
+Route::prefix('/admin')->middleware(['admin'])->group(function () {
+    Route::get('/', [AdminController::class, 'showAdminPage']);
+    Route::get('/statistic', [AdminController::class, 'showStatisticPage']);
+    Route::get('/users', [AdminController::class, 'showUsersPage']);
+    Route::get('/products', [AdminController::class, 'showProductsPage']);
 });
+

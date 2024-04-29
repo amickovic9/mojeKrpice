@@ -58,6 +58,7 @@
             <div class="total-wrapper">
                 <strong>Total: ${{ $total }}</strong>
             </div>
+            @if($total>1)
             <div class="text-right mt-3">
                 <form action="/make-order" method="post">
                     @csrf
@@ -65,6 +66,7 @@
                     <button type="submit" class='btn btn-primary'>Order</button>
                 </form>
             </div>
+            @endif
         </div>
     </div>
 </div>
