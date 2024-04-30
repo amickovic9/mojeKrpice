@@ -59,5 +59,16 @@ Route::prefix('/admin')->middleware(['admin'])->group(function () {
     Route::get('/statistic', [AdminController::class, 'showStatisticPage']);
     Route::get('/users', [AdminController::class, 'showUsersPage']);
     Route::get('/products', [AdminController::class, 'showProductsPage']);
+    Route::get('/delete-product/{product}',[AdminController::class,'deleteProduct']);
+    Route::get('/edit-product/{product}',[AdminController::class,'showEditProductPage']);
+    Route::post('/edit-product/{product}',[AdminController::class,'editProduct']);
+    Route::get('/delete-user/{user}',[AdminController::class,'deleteUser']);
+    Route::get('/edit-user/{user}',[AdminController::class,'showEditUserPage']);
+    Route::put('/edit-user/{user}',[AdminController::class,'updateUser']);
+    Route::get('/orders',[AdminController::class,'showOrdersPage']);
+    Route::get('/delete-order/{order}',[AdminController::class,'deleteOrder']);
+    Route::get('/edit-order/{order}',[AdminController::class,'showEditOrderPage']);
+    Route::put('/edit-order/{order}',[AdminController::class,'updateOrder']);
+
 });
 

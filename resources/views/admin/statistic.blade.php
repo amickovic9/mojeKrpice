@@ -40,8 +40,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="chart-container">
-                        <h2 class="chart-title">Products Created In Last 7 days</h2>
-                        <canvas id="productChart1" class="product-chart"></canvas>
+                        <h2 class="chart-title">Users Created In Last 30 days</h2>
+                        <canvas id="userChart" class="user-chart"></canvas>
                     </div>
                 </div>
             </div>
@@ -58,7 +58,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Funkcija za crtanje pie chart-a
         function drawPieChart(canvasId, labels, data) {
             var ctx = document.getElementById(canvasId).getContext('2d');
             new Chart(ctx, {
@@ -90,7 +89,6 @@
             });
         }
 
-        // Funkcija za crtanje line chart-a
         function drawLineChart(canvasId, labels, data) {
             var ctx = document.getElementById(canvasId).getContext('2d');
             new Chart(ctx, {
@@ -121,16 +119,52 @@
             });
         }
 
-        // Podaci za chartove
         var orderLabels = @json(array_keys($orderCounts));
         var orderCounts = @json(array_values($orderCounts));
         var lastSevenDays = @json($dates);
         var lastSevenCounts = @json($counts);
 
-        // Pozivanje funkcija za crtanje chartova
         drawPieChart('orderChart', orderLabels, orderCounts);
         drawLineChart('productChart1', lastSevenDays, lastSevenCounts);
     </script>
+    <script>
+    function drawPieChart(canvasId, labels, data) {
+        var ctx = document.getElementById(canvasId).getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 206, 86, 0.5)',
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(153, 102, 255, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    }
+
+    var orderLabels = @json(array_keys($orderCounts));
+    var orderCounts = @json(array_values($orderCounts));
+
+    drawPieChart('orderChart', orderLabels, orderCounts);
+</script>
+
 
 </body>
 </html>

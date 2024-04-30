@@ -22,4 +22,7 @@ class Order extends Model
         'delivered',
         'note',
     ];
+    public function customer(){
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

@@ -31,7 +31,7 @@ class OrderController extends Controller
 
             $order['product_id']=$product->id;
             Order::create($order);
-            $product['available']=true;
+            $product['available']=false;
             $product->update();
             $cart->delete();
         }
