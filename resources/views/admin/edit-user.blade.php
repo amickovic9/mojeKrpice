@@ -35,16 +35,23 @@
                         <input type="text" class="form-control" id="lastName" name="lastName" value="{{$user->lastName}}">
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}">
                     </div>
-                    <div class="mb-3">
-                        <label for="admin" class="form-label">Admin</label>
-                        <select class="form-select" id="admin" name="admin">
-                            <option value="0" {{$user->admin == 0 ? 'selected' : ''}}>No</option>
-                            <option value="1" {{$user->admin == 1 ? 'selected' : ''}}>Yes</option>
-                        </select>
-                    </div>
+                    <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="admin" name="admin" value="1" {{$user->admin == 1 ? 'checked' : ''}}>
+    <label class="form-check-label" for="admin">Admin</label>
+</div>
+<div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="productBlock" name="productBlock" value="1" {{$user->productBlock ? 'checked' : ''}}>
+    <label class="form-check-label" for="productBlock">Product Block</label>
+</div>
+<div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="orderBlock" name="orderBlock" value="1" {{$user->orderBlock ? 'checked' : ''}}>
+    <label class="form-check-label" for="orderBlock">Order Block</label>
+</div>
+
+
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </form>
             </div>

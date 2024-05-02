@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {   
     public function showMakeOrderPage(Request $request){
+        if(Auth::user()->orderBlock == true){
+            return redirect('/')->with('danger','You can not order products anymore!');
+
+        }
         $total = $request->total;
         return view('order.make-order',['total'=>$total]);
     }

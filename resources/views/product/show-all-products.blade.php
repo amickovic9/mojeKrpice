@@ -5,62 +5,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Dodajte prilagođene stilove */
         .dropdown-menu {
-            background-color: black;
+            background-color: #212529;
         }
         .dropdown-item {
             color: white;
         }
         .dropdown-toggle {
-            width: 120px; /* Širina dropdown dugmeta */
-            text-align: left; /* Tekst se poravnava na levo */
+            width: 120px;
+            text-align: left;
+        }
+        .card {
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
         }
     </style>
 </head>
 <body>
     <div class="container mt-5">
-        <!-- Naslov -->
         <h2 class="text-center mb-4">Our Products</h2>
 
-        <!-- Dropdown meni za sortiranje -->
-        <div class="dropdown mb-3">
-            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" aria-expanded="false">
-                Sort by
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="?sort=price_asc">Price Low to High</a></li>
-                <li><a class="dropdown-item" href="?sort=price_desc">Price High to Low</a></li>
-                <li><a class="dropdown-item" href="?sort=date_asc">Date Ascending</a></li>
-                <li><a class="dropdown-item" href="?sort=date_desc">Date Descending</a></li>
-            </ul>
+        <form method="GET" action="" class="mb-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="input-group">
+                <input name="search" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="searchButton" value="{{ isset($_GET['search']) ? $_GET['search'] : '' }}">
+            </div>
         </div>
-        
+        <div class="col-md-4">
+            <div class="input-group">
+                <label for="sortBy" class="input-group-text">Sort By</label>
+                <select class="form-select" id="sortBy" name="sortBy">
+                    <option value="none" {{ !isset($_GET['sortBy']) ? 'selected' : '' }}>None</option>
+                    <option value="date_asc" {{ isset($_GET['sortBy']) && $_GET['sortBy'] == 'date_asc' ? 'selected' : '' }}>Date Asc</option>
+                    <option value="date_desc" {{ isset($_GET['sortBy']) && $_GET['sortBy'] == 'date_desc' ? 'selected' : '' }}>Date Desc</option>
+                    <option value="price_asc" {{ isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_asc' ? 'selected' : '' }}>Price Asc</option>
+                    <option value="price_desc" {{ isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_desc' ? 'selected' : '' }}>Price Desc</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group">
+                <input name="size" type="text" class="form-control" placeholder="Size" aria-label="Size" value="{{ isset($_GET['search']) ? $_GET['size'] : '' }}" aria-describedby="size">
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+
+
         <div class="row">
-            <!-- Prikaz proizvoda -->
             @foreach ($products as $product)
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ asset('uploads/' . $product->image) }}" class="card-img-top" alt="Product Image">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $product->name }}</h5>
-                        <p class="card-text">{{ $product->size }}</p>
-                        <p class="card-text">{{ $product->price }} rsd</p>
-                        <a href = "/product/{{$product->id}}">Show more</a>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="{{ asset('uploads/' . $product->image) }}" class="card-img-top" alt="Product Image">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $product->name }}</h5>
+                            <p class="card-text">{{ $product->size }}</p>
+                            <p class="card-text">{{ $product->price }} rsd</p>
+                            <a href="/product/{{$product->id}}" class="btn btn-primary">Show more</a>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endforeach
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // JavaScript kod za omogućavanje dropdown menija
         var dropdownMenuButton = document.getElementById('dropdownMenuButton');
         dropdownMenuButton.addEventListener('click', function () {
             var dropdownMenu = dropdownMenuButton.nextElementSibling;

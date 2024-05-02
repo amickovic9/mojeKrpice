@@ -170,6 +170,30 @@ class AdminController extends Controller
         $user['lastName']=$request->input('lastName');
         $user['email']=$request->input('email');
         $user['admin']=$request->input('admin');
+        if(isset($request->productBlock)){
+            $user['productBlock']=$request->input('productBlock');
+        }
+        else{
+            $user['productBlock']=false;
+        }
+        if(isset($request->orderBlock)){
+        $user['orderBlock']=$request->input('orderBlock');
+
+        }
+        else{
+        $user['orderBlock']=false;
+
+        }
+        if(isset($request->admin)){
+            $user['admin']=$request->input('admin');
+    
+            }
+            else{
+            $user['admin']=false;
+    
+            }
+
+
         $user->update();
         return redirect('/admin/users')->with('success','You have successfully updated user!');
     }

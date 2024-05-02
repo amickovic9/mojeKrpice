@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->boolean('admin')->default(false);
+            $table->boolean('orderBlock')->default(false);
+            $table->boolean('productBlock')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

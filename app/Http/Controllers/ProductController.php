@@ -14,10 +14,16 @@ class ProductController extends Controller
 {
     public function showAddProductPage()
     {
+        if(Auth::user()->productBlock == true){
+            return redirect('/')->with('danger','You can not post products anymore! Contact our admins fore more informations!');
+        }
         return view('product.add-product');
     }
     public function addProduct(Request $request)
     {
+        if(Auth::user()->productBlock == true){
+            return redirect('/')->with('danger','You can not post products anymore! Contact our admins fore more information!');
+        }
         $product = $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -35,28 +41,44 @@ class ProductController extends Controller
         Product::create($product);
         return redirect('/')->with('success', 'You have succesfully posted your product!');
     }
-    public function  showAllProducts(Request $request)
-    {
-        if (isset($request->sort)) {
-            $sort = $request->sort;
-            if ($sort == "price_asc") {
-                $products = Product::where('available',1)->orderBy('price', 'asc')->get();
-            }
-            if ($sort == 'price_desc') {
-                $products = Product::where('available',1)->orderBy('price', 'desc')->get();
-            }
-            if ($sort == 'date_asc') {
-                $products = Product::where('available',1)->orderBy('created_at', 'asc')->get();
-            }
-            if ($sort == 'date_desc') {
-                $products = Product::where('available',1)->orderBy('created_at', 'desc')->get();
-            }
-        } else {
-            $products = Product::where('available',1)->get();
-        }
+    public function showAllProducts(Request $request)
+{
+    $productsQuery = Product::where('available', 1);
 
-        return view('product.show-all-products', ['products' => $products]);
+    if ($request->has('sort')) {
+        $sort = $request->sort;
+        if ($sort == "price_asc") {
+            $productsQuery->orderBy('price', 'asc');
+        }
+        elseif ($sort == 'price_desc') {
+            $productsQuery->orderBy('price', 'desc');
+        }
+        elseif ($sort == 'date_asc') {
+            $productsQuery->orderBy('created_at', 'asc');
+        }
+        elseif ($sort == 'date_desc') {
+            $productsQuery->orderBy('created_at', 'desc');
+        }
     }
+
+    if ($request->filled('search')) { 
+        $search = $request->search;
+        $productsQuery->where('name', 'like', '%' . $search . '%');
+    }
+
+    if ($request->filled('size')) { 
+        $size = $request->size;
+        $productsQuery->where('size', 'like', '%' . $size . '%');
+    }
+
+    $products = $productsQuery->get();
+    return view('product.show-all-products', ['products' => $products]);
+}
+
+
+    
+
+
     public function showProduct(Product $product)
     {
         return view('product.product', ['product' => $product]);
