@@ -16,6 +16,7 @@
                     <a href="/admin/users" class="btn btn-primary btn-lg mb-3">Manage Users</a>
                     <a href="/admin/orders" class="btn btn-primary btn-lg mb-3">Manage Orders</a>
                     <a href="/admin/products" class="btn btn-primary btn-lg mb-3">Manage Products</a>
+                    <a href="/admin/messages" class="btn btn-primary btn-lg mb-3">Manage messages</a>
                 </div>
             </div>
         </div>

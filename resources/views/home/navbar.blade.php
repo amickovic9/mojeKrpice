@@ -46,6 +46,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/my-products">Products & Orders</a>
                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="/contact-us">Contact us<a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>
                     </li>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\File;
 
 
@@ -14,15 +15,15 @@ class ProductController extends Controller
 {
     public function showAddProductPage()
     {
-        if(Auth::user()->productBlock == true){
-            return redirect('/')->with('danger','You can not post products anymore! Contact our admins fore more informations!');
+        if (Auth::user()->productBlock == true) {
+            return redirect('/all-products')->with('danger', 'You can not post products anymore! Contact our admins fore more information!');
         }
         return view('product.add-product');
     }
     public function addProduct(Request $request)
     {
-        if(Auth::user()->productBlock == true){
-            return redirect('/')->with('danger','You can not post products anymore! Contact our admins fore more information!');
+        if (Auth::user()->productBlock == true) {
+            return redirect('/')->with('danger', 'You can not post products anymore! Contact our admins fore more information!');
         }
         $product = $request->validate([
             'name' => 'required',
@@ -42,88 +43,87 @@ class ProductController extends Controller
         return redirect('/')->with('success', 'You have succesfully posted your product!');
     }
     public function showAllProducts(Request $request)
-{
-    $productsQuery = Product::where('available', 1);
+    {
+        $productsQuery = Product::where('available', 1);
 
-    if ($request->has('sort')) {
-        $sort = $request->sort;
-        if ($sort == "price_asc") {
-            $productsQuery->orderBy('price', 'asc');
+        if ($request->has('sort')) {
+            $sort = $request->sort;
+            if ($sort == "price_asc") {
+                $productsQuery->orderBy('price', 'asc');
+            } elseif ($sort == 'price_desc') {
+                $productsQuery->orderBy('price', 'desc');
+            } elseif ($sort == 'date_asc') {
+                $productsQuery->orderBy('created_at', 'asc');
+            } elseif ($sort == 'date_desc') {
+                $productsQuery->orderBy('created_at', 'desc');
+            }
         }
-        elseif ($sort == 'price_desc') {
-            $productsQuery->orderBy('price', 'desc');
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $productsQuery->where('name', 'like', '%' . $search . '%');
         }
-        elseif ($sort == 'date_asc') {
-            $productsQuery->orderBy('created_at', 'asc');
+
+        if ($request->filled('size')) {
+            $size = $request->size;
+            $productsQuery->where('size', 'like', '%' . $size . '%');
         }
-        elseif ($sort == 'date_desc') {
-            $productsQuery->orderBy('created_at', 'desc');
-        }
+
+        $products = $productsQuery->get();
+        return view('product.show-all-products', ['products' => $products]);
     }
 
-    if ($request->filled('search')) { 
-        $search = $request->search;
-        $productsQuery->where('name', 'like', '%' . $search . '%');
-    }
-
-    if ($request->filled('size')) { 
-        $size = $request->size;
-        $productsQuery->where('size', 'like', '%' . $size . '%');
-    }
-
-    $products = $productsQuery->get();
-    return view('product.show-all-products', ['products' => $products]);
-}
 
 
-    
 
 
     public function showProduct(Product $product)
     {
         return view('product.product', ['product' => $product]);
     }
-    public function showMyProductsPage(){
+    public function showMyProductsPage()
+    {
         $products = Auth::user()->products()->get();
-        
+
         $ids = [];
-        foreach($products as $product){
+        foreach ($products as $product) {
             $ids[] = $product->id;
         }
-        
+
         $orders = Order::whereIn('product_id', $ids)
-        ->where('delivered', 0)
-        ->where('accepted',  true)
-        ->orWhereNull('accepted')
-        ->orderBy('created_at', 'asc')
-        ->get();
-            
+            ->where('delivered', 0)
+            ->where('accepted',  true)
+            ->orWhereNull('accepted')
+            ->orderBy('created_at', 'asc')
+            ->get();
+
         return view('product.my-products', ['products' => $products, 'orders' => $orders]);
     }
-    
-    
+
+
 
 
     public function deleteProduct(Product $product)
     {
-        if($product->user_id != Auth::user()->id){
-            return redirect('/my-products')->with('danger','You can delete only your products!');
+        if ($product->user_id != Auth::user()->id) {
+            return redirect('/my-products')->with('danger', 'You can delete only your products!');
         }
         $imagePath = public_path('uploads/' . $product->image);
 
         if (File::exists($imagePath)) {
             File::delete($imagePath);
         }
-        
+
         $product->delete();
 
         return redirect()->back()->with('success', 'Product deleted successfully.');
     }
-    public function showEditProductPage(Product $product){
-        if($product->user_id != Auth::user()->id){
-            return redirect('/my-products')->with('danger','You can edit only your products!');
+    public function showEditProductPage(Product $product)
+    {
+        if ($product->user_id != Auth::user()->id) {
+            return redirect('/my-products')->with('danger', 'You can edit only your products!');
         }
-        return view('product.edit-product',['product'=>$product]);
+        return view('product.edit-product', ['product' => $product]);
     }
     public function updateProduct(Request $request, Product $product)
     {
@@ -148,6 +148,4 @@ class ProductController extends Controller
 
         return redirect('/my-products')->with('success', 'Product updated successfully.');
     }
-
-
 }

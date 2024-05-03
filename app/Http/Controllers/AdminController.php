@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactMessages;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Order;
@@ -16,126 +17,132 @@ class AdminController extends Controller
 
     public function showAdminPage()
     {
-   
-    $users = User::all();
-    $products = Product::all();
-    
-    return view('admin.index', [
-        'users' => $users,
-        'products' => $products,
-    ]);
+
+        $users = User::all();
+        $products = Product::all();
+
+        return view('admin.index', [
+            'users' => $users,
+            'products' => $products,
+        ]);
     }
 
-    public function showStatisticPage(){
+    public function showStatisticPage()
+    {
         $sevenDaysAgo = Carbon::now()->subDays(7);
         $dates = [];
         for ($i = 0; $i < 7; $i++) {
             $dates[] = $sevenDaysAgo->copy()->addDays($i)->format('Y-m-d');
         }
-    
+
         $productsByDate = Product::selectRaw('DATE(created_at) as date, COUNT(*) as count')
             ->where('created_at', '>=', $sevenDaysAgo)
             ->groupBy('date')
             ->pluck('count', 'date');
-    
+
         $counts = [];
         foreach ($dates as $date) {
             $counts[] = $productsByDate[$date] ?? 0;
         }
-        
-    $acceptedFalseOrders = Order::where('created_at', '>=', $sevenDaysAgo)
-        ->where('accepted', true)
-        ->where('delivered', false)
-        ->count();
 
-    $acceptedNullOrders = Order::where('created_at', '>=', $sevenDaysAgo)
-        ->whereNull('accepted')
-        ->count();
-    
-    $deliveredOrders = Order::where('created_at', '>=', $sevenDaysAgo)
-        ->where('delivered', true)
-        ->count();
-    $declinedOrders = Order::where('created_at', '>=', $sevenDaysAgo)
-    ->where('accepted', false)
-    ->count();
+        $acceptedFalseOrders = Order::where('created_at', '>=', $sevenDaysAgo)
+            ->where('accepted', true)
+            ->where('delivered', false)
+            ->count();
+
+        $acceptedNullOrders = Order::where('created_at', '>=', $sevenDaysAgo)
+            ->whereNull('accepted')
+            ->count();
+
+        $deliveredOrders = Order::where('created_at', '>=', $sevenDaysAgo)
+            ->where('delivered', true)
+            ->count();
+        $declinedOrders = Order::where('created_at', '>=', $sevenDaysAgo)
+            ->where('accepted', false)
+            ->count();
         $orderCounts = [
             'Declined orders' => $declinedOrders,
             'Accepted Orders' => $acceptedFalseOrders,
             'Processing Orders' => $acceptedNullOrders,
             'Delivered Orders' => $deliveredOrders,
         ];
-        return view('admin.statistic',[
+        return view('admin.statistic', [
             'dates' => $dates,
-            'orderCounts'=>$orderCounts,
-            'counts' =>$counts,
+            'orderCounts' => $orderCounts,
+            'counts' => $counts,
         ]);
-   
     }
 
 
-    public function showUsersPage(){
+    public function showUsersPage()
+    {
         $users = User::all();
-    
+
         $thirtyDaysAgo = Carbon::now()->subDays(30);
-    
+
         $userDates = [];
         for ($i = 0; $i < 30; $i++) {
             $userDates[] = $thirtyDaysAgo->copy()->addDays($i)->format('Y-m-d');
         }
-    
+
         $usersByDate = User::selectRaw('DATE(created_at) as date, COUNT(*) as count')
             ->where('created_at', '>=', $thirtyDaysAgo)
             ->groupBy('date')
             ->pluck('count', 'date');
-    
+
         $userCounts = [];
         foreach ($userDates as $date) {
             $userCounts[] = $usersByDate[$date] ?? 0;
         }
-    
+
         return view('admin.users', [
             'users' => $users,
             'userDates' => $userDates,
             'userCounts' => $userCounts
         ]);
     }
-    
-    public function showProductsPage(){
+
+    public function showProductsPage()
+    {
         $products = Product::all();
         $sevenDaysAgo = Carbon::now()->subDays(7);
         $dates = [];
         for ($i = 0; $i < 7; $i++) {
             $dates[] = $sevenDaysAgo->copy()->addDays($i)->format('Y-m-d');
         }
-    
+
         $productsByDate = Product::selectRaw('DATE(created_at) as date, COUNT(*) as count')
             ->where('created_at', '>=', $sevenDaysAgo)
             ->groupBy('date')
             ->pluck('count', 'date');
-    
+
         $counts = [];
         foreach ($dates as $date) {
             $counts[] = $productsByDate[$date] ?? 0;
         }
-        return view('admin.products',['products'=>$products,
-    'dates'=>$dates,
-    'counts'=>$counts
-    ]);
+        return view('admin.products', [
+            'products' => $products,
+            'dates' => $dates,
+            'counts' => $counts
+        ]);
     }
-    public function deleteProduct(Product $product){
+    public function deleteProduct(Product $product)
+    {
         $imagePath = public_path('uploads/' . $product->image);
 
         if (File::exists($imagePath)) {
             File::delete($imagePath);
         }
-        
+
         $product->delete();
-        return redirect()->back()->with('success','You have successfully deleted product!');
+        return redirect()->back()->with('success', 'You have successfully deleted product!');
     }
-    public function showEditProductPage(Product $product){
-        return view('product.edit-product',['product'=>$product]);
+    public function showEditProductPage(Product $product)
+    {
+        return view('product.edit-product', ['product' => $product]);
     }
-    public function editProduct(Product $product, Request $request){
+    public function editProduct(Product $product, Request $request)
+    {
         if ($request->hasFile('image')) {
             $imagePath = public_path('uploads/' . $product->image);
 
@@ -154,50 +161,46 @@ class AdminController extends Controller
         $product->price = $request->input('price');
         $product->available = $request->input('available');
         $product->save();
-        return redirect('/admin/products')->with('success','You have successfully edited product!');
+        return redirect('/admin/products')->with('success', 'You have successfully edited product!');
     }
-    public function deleteUser(User $user){
+    public function deleteUser(User $user)
+    {
         $user->delete();
-        return redirect()->back()->with('success','You have successfully deleted user!');
+        return redirect()->back()->with('success', 'You have successfully deleted user!');
     }
-    public function showEditUserPage(User $user){
-        return view('admin.edit-user',['user'=>$user]);
-
+    public function showEditUserPage(User $user)
+    {
+        return view('admin.edit-user', ['user' => $user]);
     }
-    public function updateUser(Request $request,User $user){
-        $user['username']=$request->input('username');
-        $user['firstName']=$request->input('firstName');
-        $user['lastName']=$request->input('lastName');
-        $user['email']=$request->input('email');
-        $user['admin']=$request->input('admin');
-        if(isset($request->productBlock)){
-            $user['productBlock']=$request->input('productBlock');
+    public function updateUser(Request $request, User $user)
+    {
+        $user['username'] = $request->input('username');
+        $user['firstName'] = $request->input('firstName');
+        $user['lastName'] = $request->input('lastName');
+        $user['email'] = $request->input('email');
+        $user['admin'] = $request->input('admin');
+        if (isset($request->productBlock)) {
+            $user['productBlock'] = $request->input('productBlock');
+        } else {
+            $user['productBlock'] = false;
         }
-        else{
-            $user['productBlock']=false;
+        if (isset($request->orderBlock)) {
+            $user['orderBlock'] = $request->input('orderBlock');
+        } else {
+            $user['orderBlock'] = false;
         }
-        if(isset($request->orderBlock)){
-        $user['orderBlock']=$request->input('orderBlock');
-
+        if (isset($request->admin)) {
+            $user['admin'] = $request->input('admin');
+        } else {
+            $user['admin'] = false;
         }
-        else{
-        $user['orderBlock']=false;
-
-        }
-        if(isset($request->admin)){
-            $user['admin']=$request->input('admin');
-    
-            }
-            else{
-            $user['admin']=false;
-    
-            }
 
 
         $user->update();
-        return redirect('/admin/users')->with('success','You have successfully updated user!');
+        return redirect('/admin/users')->with('success', 'You have successfully updated user!');
     }
-    public function showOrdersPage(){
+    public function showOrdersPage()
+    {
         $orders = Order::all();
         $sevenDaysAgo = Carbon::now()->subDays(7);
         $dates = [];
@@ -208,11 +211,11 @@ class AdminController extends Controller
             ->where('accepted', true)
             ->where('delivered', false)
             ->count();
-    
+
         $acceptedNullOrders = Order::where('created_at', '>=', $sevenDaysAgo)
             ->whereNull('accepted')
             ->count();
-        
+
         $deliveredOrders = Order::where('created_at', '>=', $sevenDaysAgo)
             ->where('delivered', true)
             ->count();
@@ -225,21 +228,24 @@ class AdminController extends Controller
             'Processing Orders' => $acceptedNullOrders,
             'Delivered Orders' => $deliveredOrders,
         ];
-        return view('admin.orders',[
-            'orders'=>$orders,
-            'orderCounts'=>$orderCounts
+        return view('admin.orders', [
+            'orders' => $orders,
+            'orderCounts' => $orderCounts
         ]);
     }
-    
-    public function deleteOrder(Order $order){
+
+    public function deleteOrder(Order $order)
+    {
         $order->delete();
-        return redirect()->back()->with('success','You have successfully deleted a order!');
+        return redirect()->back()->with('success', 'You have successfully deleted a order!');
     }
-    public function showEditOrderPage(Order $order){
-        return view('admin.edit-order',['order'=>$order]);
+    public function showEditOrderPage(Order $order)
+    {
+        return view('admin.edit-order', ['order' => $order]);
     }
 
-    public function updateOrder(Request $request, Order $order) {
+    public function updateOrder(Request $request, Order $order)
+    {
         $request->validate([
             'address' => 'required|string',
             'phone' => 'required|string',
@@ -262,6 +268,24 @@ class AdminController extends Controller
 
         return redirect('/admin/orders')->with('success', 'Order updated successfully');
     }
-}
-   
+    public function showMessagesPage()
+    {
+        $messages = ContactMessages::orderBy('read')->orderBy('created_at', 'asc')->get();
+        return view('admin.messages', ['messages' => $messages]);
+    }
+    public function showMessage(ContactMessages $message)
+    {
+        $message['read'] = true;
+        $message->update();
+        $replies = $message->replies()->with('user')->orderBy('created_at', 'desc')->get();
+        foreach ($replies as $reply) {
+            $reply['firstName'] = $reply->user->firstName;
+            $reply['lastName'] = $reply->user->lastName;
+        }
 
+        return view('admin.message', [
+            'message' => $message,
+            'replies' => $replies
+        ]);
+    }
+}

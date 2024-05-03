@@ -37,6 +37,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Cart::class);
     }
+    public function contactMessages()
+    {
+        return $this->hasMany(ContactMessages::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
