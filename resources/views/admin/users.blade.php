@@ -8,8 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
         .action-icons {
-            font-size: 1.5rem; /* Povećaj veličinu ikona */
-            margin-right: 10px; /* Dodaj malo razmaka između ikona */
+            font-size: 1.5rem;
+            margin-right: 10px;
         }
         .chart-container {
             margin-bottom: 20px;
@@ -29,6 +29,7 @@
 <body>
     @include('home.navbar')
     <div class="container mt-5">
+        
         <div class="row">
             <div class="col-md-12">
                 <div class="chart-container">
@@ -36,8 +37,20 @@
                     <canvas id="userChart" class="user-chart"></canvas>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-9">
                 <h2>Users</h2>
+                <div class="row mb-3">
+                    <form action="" method="get">
+                        <div class="col-md-6">
+                            <!-- Dodavanje vrednosti pretrage u input polja -->
+                            <input type="text" class="form-control" name="username" placeholder="Search by Username" value="{{ isset($_GET['username']) ? $_GET['username'] : '' }}">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="email" placeholder="Search by Email" value="{{ isset($_GET['email']) ? $_GET['email'] : '' }}">
+                        </div>
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
                 <table class="table">
                     <thead>
                         <tr>

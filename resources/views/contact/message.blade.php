@@ -40,18 +40,24 @@
                     <div class="card-header bg-secondary text-white">
                         <h5 class="mb-0">Replies</h5>
                     </div>
-                    <div class="card-body">
-                        @foreach ($message->replies as $reply)
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <p class="card-text">
-                                        <strong>{{ $reply->user->firstName }} {{ $reply->user->lastName }}</strong><br>
-                                        {{ $reply->reply }}
-                                    </p>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
+                    @foreach ($replies as $reply)
+    <div class="card mb-3">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>{{ $reply->user->firstName }} {{ $reply->user->lastName }}</strong>
+                </div>
+                <div>
+                    <small>{{ $reply->created_at->diffForHumans() }}</small>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{ $reply->reply }}</p>
+        </div>
+    </div>
+@endforeach
+
                 </div>
             </div>
         </div>

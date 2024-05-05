@@ -12,6 +12,23 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <h1 class="mb-4">Admin Messages</h1>
+                <!-- Forma za pretragu -->
+                <form action="" method="GET">
+                    <div class="form-row mb-3">
+                        <div class="col">
+                            <input type="text" class="form-control" name="title" placeholder="Search by Title" value="{{ isset($_GET['title']) ? $_GET['title'] : '' }}">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="username" placeholder="Search by Username" value="{{ isset($_GET['username']) ? $_GET['username'] : '' }}">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" name="email" placeholder="Search by Email" value="{{ isset($_GET['email']) ? $_GET['email'] : '' }}">
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </form>
                 <ul class="list-group">
                     @foreach ($messages as $message)
                         <li class="list-group-item">

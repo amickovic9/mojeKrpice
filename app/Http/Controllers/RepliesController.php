@@ -11,6 +11,9 @@ class RepliesController extends Controller
 {
     public function addReply(Request $request)
     {
+        if(Auth::user()->contactBlock){
+            return redirect('/all-products')->with('danger','You are blocked! Contact our team for more information!');
+        }
         $reply = $request->validate([
             'reply' => 'required',
             'contactMessage_id' => 'required',

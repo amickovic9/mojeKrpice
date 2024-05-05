@@ -30,6 +30,21 @@
             </div>
             <div class="col-md-12">
                 <h2>Products</h2>
+                <!-- Forma za pretragu -->
+                <form action="" method="GET">
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="searchName" name="name" placeholder="Search by Name" value="{{ isset($_GET['name']) ? $_GET['name'] : '' }}">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="searchSize" name="size" placeholder="Search by Size" value="{{ isset($_GET['size']) ? $_GET['size'] : '' }}">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Kraj forme za pretragu -->
                 <table class="table">
                     <thead>
                         <tr>

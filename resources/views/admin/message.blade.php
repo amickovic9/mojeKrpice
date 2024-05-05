@@ -34,14 +34,24 @@
                         Replies
                     </div>
                     <div class="card-body">
-                        @foreach ($replies as $reply)
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <p class="card-text">{{ $reply->reply }}</p>
-                                    <p class="card-text">Replied by: {{ $reply->user->firstName }} {{ $reply->user->lastName }}</p>
-                                </div>
-                            </div>
-                        @endforeach
+                    @foreach ($replies as $reply)
+    <div class="card mb-3">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>{{ $reply->user->firstName }} {{ $reply->user->lastName }}</strong>
+                </div>
+                <div>
+                    <small>{{ $reply->created_at->diffForHumans() }}</small>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{ $reply->reply }}</p>
+        </div>
+    </div>
+@endforeach
+
                         
                     </div>
                 </div>

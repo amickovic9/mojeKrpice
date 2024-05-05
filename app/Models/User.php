@@ -27,6 +27,7 @@ class User extends Authenticatable
         'admin',
         'orderBlock',
         'productBlock',
+        'contactBlock',
         'password',
     ];
     public function products()

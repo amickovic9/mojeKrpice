@@ -31,6 +31,19 @@
                 </div>
             <div class="col-md-12">
                 <h2>Orders</h2>
+                <form action="" method="GET">
+                    <div class="row mb-3">
+                       
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="searchPhone" name="phone" placeholder="Search by Phone" value="{{ isset($_GET['phone']) ? $_GET['phone'] : '' }}">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </form>
                 <table class="table">
                     <thead>
                         <tr>

@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('admin')->default(false);
             $table->boolean('orderBlock')->default(false);
             $table->boolean('productBlock')->default(false);
+            $table->boolean('contactBlock')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
