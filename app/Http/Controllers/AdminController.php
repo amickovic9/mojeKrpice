@@ -192,6 +192,7 @@ class AdminController extends Controller
         $user['admin'] = $request->input('admin');
         if (isset($request->productBlock)) {
             $user['productBlock'] = $request->input('productBlock');
+            
         } else {
             $user['productBlock'] = false;
         }
@@ -204,6 +205,11 @@ class AdminController extends Controller
             $user['admin'] = $request->input('admin');
         } else {
             $user['admin'] = false;
+        }
+        if (isset($request->contactBlock)) {
+            $user['contactBlock'] = $request->input('contactBlock');
+        } else {
+            $user['contactBlock'] = false;
         }
 
 
