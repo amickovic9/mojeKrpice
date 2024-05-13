@@ -46,7 +46,7 @@
                             <img src="{{ asset('uploads/' . $product->image) }}" class="product-image" alt="Product Image">
                         </td>
                         <td class="text-right">
-                            <a href="/product/{{ $product->id }}" class="btn btn-link">Show Product</a>
+                            <a href="/product/{{ $product->id }}" class="btn btn-outline-dark">Show Product</a>
                         </td>
                         <td class="text-right">
                             <a href="/remove-from-cart/{{ $product->cart }}" class="btn btn-link text-danger"><i class="fas fa-times"></i></a>
@@ -63,7 +63,7 @@
                 <form action="/make-order" method="post">
                     @csrf
                     <input type="hidden" name="total" value={{$total}}>
-                    <button type="submit" class='btn btn-primary'>Order</button>
+                    <button type="submit" class='btn btn-outline-dark'>Naruci</button>
                 </form>
             </div>
             @endif
@@ -77,4 +77,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 
 </body>
+@include('footer')
 </html>

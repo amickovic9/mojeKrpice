@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="bg-dark text-white p-4 rounded-lg shadow">
+                <div class="text-white p-4 rounded-lg shadow" style="background-color:#17a2b8;">
                     <h1 class="text-center mb-4">Order Form</h1>
                     <h2 class="text-center mb-4">Total: {{$total}} rsd</h2>
                     <form action="/submit-order" method="post">
@@ -34,11 +34,10 @@
                             <textarea name="note" class="form-control"></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-block">Submit Order</button>
-                    </form>
-                </div>
+                        <button type="submit" class="btn btn-light" style="margin-left: 40%;">Predaj narudzbinu</button>                </div>
             </div>
         </div>
     </div>
 </body>
+@include('footer')
 </html>

@@ -14,35 +14,35 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header bg-dark text-white">
-                        <h4>Add Item</h4>
+                    <div class="card-header text-white" style="background-color:#17a2b8;">
+                        <h4 style="margin-left: 42%">Add Item</h4>
                     </div>
                     <div class="card-body">
                         <form action="/add-product" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
-                                <label for="name" class="form-label">Product Name</label>
+                                <label for="name" class="form-label">Ime produkta</label>
                                 <input type="text" id="name" name="name" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="description" class="form-label">Description</label>
+                                <label for="description" class="form-label">Opis</label>
                                 <textarea id="description" name="description" class="form-control" required></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="size" class="form-label">Size</label>
+                                <label for="size" class="form-label">Velicina</label>
                                 <input type="text" id="size" name="size" class="form-control" required>
                             </div>
                            
                             <div class="mb-3">
-                                <label for="contact" class="form-label">Price in rsd</label>
+                                <label for="contact" class="form-label">Cena u rsd</label>
                                 <input type="text" id="contact" name="price" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="image" class="form-label">Image</label>
+                                <label for="image" class="form-label">Slika</label>
                                 <input type="file" id="image" name="image" class="form-control" required>
                             </div>
                             
-                            <button type="submit" class="btn btn-dark">Submit</button>
+                            <button type="submit" class="btn btn-outline-dark" style="margin-left: 45%;">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -53,4 +53,5 @@
     <!-- Bootstrap JS (optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+@include('footer')
 </html>
