@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     @include('home.navbar')
     <meta charset="UTF-8">
@@ -12,23 +12,23 @@
     <div class="container">
         <header class="bg-dark text-white py-4 mb-4">
             <div class="container">
-                <h1 class="display-4">Welcome to Our Website</h1>
-                <p class="lead">Simple and beautiful homepage</p>
+                <h1 class="display-4">Dobrodošli na naš sajt</h1>
+                <p class="lead">Jednostavna i lepa početna stranica</p>
             </div>
         </header>
         <div class="row">
             <div class="col-md-6">
-                <h2>About Us</h2>
+                <h2>O nama</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec ligula justo. In ullamcorper risus et sapien congue, vel dapibus quam gravida. </p>
             </div>
             <div class="col-md-6">
-                <h2>Contact Us</h2>
+                <h2>Kontaktirajte nas</h2>
                 <p>Email: info@example.com</p>
-                <p>Phone: +123456789</p>
+                <p>Telefon: +123456789</p>
             </div>
         </div>
         <footer class="mt-5">
-            <p>&copy; 2024 Simple Homepage. All Rights Reserved.</p>
+            <p>&copy; 2024 Jednostavna početna stranica. Sva prava zadržana.</p>
         </footer>
     </div>
     <!-- Bootstrap JS (optional) -->

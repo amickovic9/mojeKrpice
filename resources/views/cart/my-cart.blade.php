@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Cart</title>
+    <title>Moja Korpa</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
@@ -26,12 +26,12 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <h2>My Cart</h2>
+            <h2>Moja Korpa</h2>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Product</th>
-                        <th>Price</th>
+                        <th>Proizvod</th>
+                        <th>Cena</th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -43,10 +43,10 @@
                         <td>{{ $product->name }}</td>
                         <td>${{ $product->price }}</td>
                         <td class="text-right">
-                            <img src="{{ asset('uploads/' . $product->image) }}" class="product-image" alt="Product Image">
+                            <img src="{{ asset('uploads/' . $product->image) }}" class="product-image" alt="Slika Proizvoda">
                         </td>
                         <td class="text-right">
-                            <a href="/product/{{ $product->id }}" class="btn btn-outline-dark">Show Product</a>
+                            <a href="/product/{{ $product->id }}" class="btn btn-outline-dark">Prikaži Proizvod</a>
                         </td>
                         <td class="text-right">
                             <a href="/remove-from-cart/{{ $product->cart }}" class="btn btn-link text-danger"><i class="fas fa-times"></i></a>
@@ -56,14 +56,14 @@
                 </tbody>
             </table>
             <div class="total-wrapper">
-                <strong>Total: ${{ $total }}</strong>
+                <strong>Ukupno: ${{ $total }}</strong>
             </div>
             @if($total>1)
             <div class="text-right mt-3">
                 <form action="/make-order" method="post">
                     @csrf
                     <input type="hidden" name="total" value={{$total}}>
-                    <button type="submit" class='btn btn-outline-dark'>Naruci</button>
+                    <button type="submit" class='btn btn-outline-dark'>Naruči</button>
                 </form>
             </div>
             @endif
@@ -74,8 +74,4 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-
-</body>
-@include('footer')
-</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     @include('home.navbar')
     <meta charset="UTF-8">
@@ -11,12 +11,12 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <h2 class="text-center mb-4">Admin Panel</h2>
+                <h2 class="text-center mb-4">Kontrolna tabla</h2>
                 <div class="d-grid gap-2">
-                    <a href="/admin/users" class="btn btn-primary btn-lg mb-3">Manage Users</a>
-                    <a href="/admin/orders" class="btn btn-primary btn-lg mb-3">Manage Orders</a>
-                    <a href="/admin/products" class="btn btn-primary btn-lg mb-3">Manage Products</a>
-                    <a href="/admin/messages" class="btn btn-primary btn-lg mb-3">Manage messages</a>
+                    <a href="/admin/users" class="btn btn-primary btn-lg mb-3">Upravljaj korisnicima</a>
+                    <a href="/admin/orders" class="btn btn-primary btn-lg mb-3">Upravljaj porudžbinama</a>
+                    <a href="/admin/products" class="btn btn-primary btn-lg mb-3">Upravljaj proizvodima</a>
+                    <a href="/admin/messages" class="btn btn-primary btn-lg mb-3">Upravljaj porukama</a>
                 </div>
             </div>
         </div>

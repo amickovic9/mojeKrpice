@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Orders</title>
+    <title>Porudžbine</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
@@ -12,9 +12,9 @@
             margin-right: 10px; 
         }
     .chart-container {
-        width: 70%; /* Adjust the width as needed */
-        margin: auto; /* Center the chart */
-        padding: 20px; /* Add some padding around the chart */
+        width: 70%; /* Prilagodi širinu po potrebi */
+        margin: auto; /* Centriraj grafikon */
+        padding: 20px; /* Dodaj malo prostora oko grafikona */
     }
 
     </style>
@@ -25,38 +25,38 @@
         <div class="row">
                 <div class="col-md-16">
                 <div class="chart-container">
-                        <h2 class="chart-title">Orders Overview In Last 7 Days</h2>
+                        <h2 class="chart-title">Pregled Porudžbina u Poslednjih 7 Dana</h2>
                     <canvas id="orderChart" class="order-chart" width="400px" height="400px"></canvas>
                 </div>
                 </div>
             <div class="col-md-12">
-                <h2>Orders</h2>
+                <h2>Porudžbine</h2>
                 <form action="" method="GET">
                     <div class="row mb-3">
                        
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="searchPhone" name="phone" placeholder="Search by Phone" value="{{ isset($_GET['phone']) ? $_GET['phone'] : '' }}">
+                            <input type="text" class="form-control" id="searchPhone" name="phone" placeholder="Pretraži po Telefonu" value="{{ isset($_GET['phone']) ? $_GET['phone'] : '' }}">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary">Search</button>
+                            <button type="submit" class="btn btn-primary">Pretraži</button>
                         </div>
                     </div>
                 </form>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Order ID</th>
-                            <th>User</th>
-                            <th>Address</th>
-                            <th>Phone Number</th> 
-                            <th>Total</th>
-                            <th>Date</th>
-                            <th>Note</th> 
-                            <th>Accepted</th>
-                            <th>Delivered</th>
-                            <th>Actions</th>
+                            <th>ID Porudžbine</th>
+                            <th>Korisnik</th>
+                            <th>Adresa</th>
+                            <th>Broj Telefona</th> 
+                            <th>Ukupno</th>
+                            <th>Datum</th>
+                            <th>Napomena</th> 
+                            <th>Prihvaćeno</th>
+                            <th>Dostavljeno</th>
+                            <th>Akcije</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,8 +69,8 @@
                             <td>{{ $order->product->price }}rsd</td>
                             <td>{{ $order->created_at }}</td>
                             <td>{{ $order->note }}</td> 
-                            <td>{{ $order->accepted ? "Yes" : "No" }}</td>
-                            <td>{{ $order->delivered ? "Yes" : "No" }}</td>
+                            <td>{{ $order->accepted ? "Da" : "Ne" }}</td>
+                            <td>{{ $order->delivered ? "Da" : "Ne" }}</td>
                             <td>
                                 <a href="/admin/edit-order/{{$order->id}}" class="fas fa-pencil-alt text-primary action-icons"></a>
                                 <a href="/admin/delete-order/{{$order->id}}" class="fas fa-times text-danger action-icons"></a>
@@ -92,7 +92,7 @@
         data: {
             labels: {!! json_encode(array_keys($orderCounts)) !!},
             datasets: [{
-                label: 'Number of Orders',
+                label: 'Broj Porudžbina',
                 data: {!! json_encode(array_values($orderCounts)) !!},
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',

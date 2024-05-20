@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
+    <title>Proizvodi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
@@ -24,23 +24,23 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="chart-container">
-                    <h2 class="chart-title">Products Created In Last 7 days</h2>
+                    <h2 class="chart-title">Proizvodi Objavljeni U Poslednjih 7 Dana</h2>
                     <canvas id="productChart1" class="product-chart"></canvas>
                 </div>
             </div>
             <div class="col-md-12">
-                <h2>Products</h2>
+                <h2>Proizvodi</h2>
                 <!-- Forma za pretragu -->
                 <form action="" method="GET">
                     <div class="row mb-3">
                         <div class="col-md-4">
-                            <input type="text" class="form-control" id="searchName" name="name" placeholder="Search by Name" value="{{ isset($_GET['name']) ? $_GET['name'] : '' }}">
+                            <input type="text" class="form-control" id="searchName" name="name" placeholder="Pretraži po Nazivu" value="{{ isset($_GET['name']) ? $_GET['name'] : '' }}">
                         </div>
                         <div class="col-md-4">
-                            <input type="text" class="form-control" id="searchSize" name="size" placeholder="Search by Size" value="{{ isset($_GET['size']) ? $_GET['size'] : '' }}">
+                            <input type="text" class="form-control" id="searchSize" name="size" placeholder="Pretraži po Veličini" value="{{ isset($_GET['size']) ? $_GET['size'] : '' }}">
                         </div>
                         <div class="col-md-4">
-                            <button type="submit" class="btn btn-primary">Search</button>
+                            <button type="submit" class="btn btn-primary">Pretraži</button>
                         </div>
                     </div>
                 </form>
@@ -48,24 +48,24 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Image</th>
-                            <th>Product Name</th>
-                            <th>Description</th>
-                            <th>Size</th>
-                            <th>Price</th>
-                            <th>Available</th>
-                            <th>Actions</th>
+                            <th>Slika</th>
+                            <th>Naziv Proizvoda</th>
+                            <th>Opis</th>
+                            <th>Veličina</th>
+                            <th>Cena</th>
+                            <th>Dostupno</th>
+                            <th>Akcije</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($products as $product)
                         <tr>
-                            <td><a href="/product/{{ $product->id }}"><img src="{{ asset('uploads/' . $product->image) }}" alt="Product Image" class="product-image"></a></td>
+                            <td><a href="/product/{{ $product->id }}"><img src="{{ asset('uploads/' . $product->image) }}" alt="Slika Proizvoda" class="product-image"></a></td>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->description }}</td>
                             <td>{{ $product->size }}</td>
                             <td>{{ $product->price }}</td>
-                            <td>{{ $product->available == 1 ? "Yes" : 'No' }}</td>
+                            <td>{{ $product->available == 1 ? "Da" : 'Ne' }}</td>
                             <td>
                                 <a href="/admin/edit-product/{{$product->id}}" class="fas fa-pencil-alt text-primary action-icons"></a>
                                 <a href="/admin/delete-product/{{$product->id}}" class="fas fa-times text-danger action-icons"></a>
@@ -87,7 +87,7 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Products Created',
+                        label: 'Proizvodi Napravljeni',
                         data: data,
                         borderColor: 'black',
                         backgroundColor: 'white',

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,18 +22,18 @@
                         <label for="message">Poruka:</label>
                         <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-outline-dark">Posalji</button>
+                    <button type="submit" class="btn btn-outline-dark">Pošalji</button>
                 </form>
             </div>
         </div>
         <div class="row mt-5">
             <div class="col-md-8 offset-md-2">
-                <h2 class="mb-4">Pretrazi poruke</h2>
+                <h2 class="mb-4">Pretraži poruke</h2>
                 <form action="" method="GET">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="title" placeholder="Search by title">
+                        <input type="text" class="form-control" name="title" placeholder="Pretraži po naslovu">
                     </div>
-                    <button type="submit" class="btn btn-outline-dark">Pretrazi</button>
+                    <button type="submit" class="btn btn-outline-dark">Pretraži</button>
                 </form>
                 <h2 class="mt-5 mb-4">Moje poruke</h2>
                 <ul class="list-group">

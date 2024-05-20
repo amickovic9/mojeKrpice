@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     @include("home.navbar")
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
+    <title>Registraciona Forma</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -14,21 +14,21 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-dark text-white">
-                        <h4 class="mb-0">Register</h4>
+                        <h4 class="mb-0">Registracija</h4>
                     </div>
                     <div class="card-body">
                         <form action="/register" method="post">
                             @csrf
                             <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
+                                <label for="username" class="form-label">Korisničko ime</label>
                                 <input type="text" id="username" name="username" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="firstName" class="form-label">First Name</label>
+                                <label for="firstName" class="form-label">Ime</label>
                                 <input type="text" id="firstName" name="firstName" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="lastName" class="form-label">Last Name</label>
+                                <label for="lastName" class="form-label">Prezime</label>
                                 <input type="text" id="lastName" name="lastName" class="form-control" required>
                             </div>
                             <div class="mb-3">
@@ -36,10 +36,10 @@
                                 <input type="email" id="email" name="email" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
+                                <label for="password" class="form-label">Lozinka</label>
                                 <input type="password" id="password" name="password" class="form-control" required>
                             </div>
-                            <button type="submit" class="btn btn-dark">Register</button>
+                            <button type="submit" class="btn btn-dark">Registruj se</button>
                         </form>
                     </div>
                 </div>

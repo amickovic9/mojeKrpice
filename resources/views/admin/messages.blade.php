@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Messages</title>
+    <title>Admin Poruke</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -11,21 +11,21 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <h1 class="mb-4">Admin Messages</h1>
+                <h1 class="mb-4">Admin Poruke</h1>
                 <!-- Forma za pretragu -->
                 <form action="" method="GET">
                     <div class="form-row mb-3">
                         <div class="col">
-                            <input type="text" class="form-control" name="title" placeholder="Search by Title" value="{{ isset($_GET['title']) ? $_GET['title'] : '' }}">
+                            <input type="text" class="form-control" name="title" placeholder="Pretraži po naslovu" value="{{ isset($_GET['title']) ? $_GET['title'] : '' }}">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="username" placeholder="Search by Username" value="{{ isset($_GET['username']) ? $_GET['username'] : '' }}">
+                            <input type="text" class="form-control" name="username" placeholder="Pretraži po korisničkom imenu" value="{{ isset($_GET['username']) ? $_GET['username'] : '' }}">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" name="email" placeholder="Search by Email" value="{{ isset($_GET['email']) ? $_GET['email'] : '' }}">
+                            <input type="text" class="form-control" name="email" placeholder="Pretraži po email-u" value="{{ isset($_GET['email']) ? $_GET['email'] : '' }}">
                         </div>
                         <div class="col">
-                            <button type="submit" class="btn btn-primary">Search</button>
+                            <button type="submit" class="btn btn-primary">Pretraži</button>
                         </div>
                     </div>
                 </form>
@@ -34,7 +34,7 @@
                         <li class="list-group-item">
                             <a href="/admin/message/{{ $message->id }}">{{ $message->title }}</a>
                             @if (!$message->read)
-                                <span class="badge badge-danger">Unread</span>
+                                <span class="badge badge-danger">Nepročitano</span>
                             @endif
                         </li>
                     @endforeach

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chart Display</title>
+    <title>Prikaz Grafikona</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="chart-container">
-                        <h2 class="chart-title">Users Created In Last 30 days</h2>
+                        <h2 class="chart-title">Korisnici Napravljeni U Poslednjih 30 Dana</h2>
                         <canvas id="userChart" class="user-chart"></canvas>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="chart-container">
-                        <h2 class="chart-title">Orders Overview</h2>
+                        <h2 class="chart-title">Pregled Porudžbina</h2>
                         <canvas id="orderChart" class="order-chart"></canvas>
                     </div>
                 </div>
@@ -89,82 +89,10 @@
             });
         }
 
-        function drawLineChart(canvasId, labels, data) {
-            var ctx = document.getElementById(canvasId).getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Products Created',
-                        data: data,
-                        borderColor: 'black',
-                        backgroundColor: 'white',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            stepSize: 2,
-                            callback: function(value, index, values) {
-                                if (Number.isInteger(value)) {
-                                    return value;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
         var orderLabels = @json(array_keys($orderCounts));
         var orderCounts = @json(array_values($orderCounts));
-        var lastSevenDays = @json($dates);
-        var lastSevenCounts = @json($counts);
 
         drawPieChart('orderChart', orderLabels, orderCounts);
-        drawLineChart('productChart1', lastSevenDays, lastSevenCounts);
     </script>
-    <script>
-    function drawPieChart(canvasId, labels, data) {
-        var ctx = document.getElementById(canvasId).getContext('2d');
-        new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: labels,
-                datasets: [{
-                    data: data,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.5)',
-                        'rgba(54, 162, 235, 0.5)',
-                        'rgba(255, 206, 86, 0.5)',
-                        'rgba(75, 192, 192, 0.5)',
-                        'rgba(153, 102, 255, 0.5)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true
-            }
-        });
-    }
-
-    var orderLabels = @json(array_keys($orderCounts));
-    var orderCounts = @json(array_values($orderCounts));
-
-    drawPieChart('orderChart', orderLabels, orderCounts);
-</script>
-
-
 </body>
 </html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Orders</title>
+    <title>Moje porudžbine</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
@@ -18,21 +18,21 @@
     
 
     <div class="container">
-        <h1 class="my-4">My Orders</h1>
-       <p>Note: Orders can be edited only while in processing.</p>
+        <h1 class="my-4">Moje porudžbine</h1>
+        <p>Napomena: Porudžbine se mogu menjati samo dok su u obradi.</p>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Product</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Phone Number</th>
-                        <th>Address</th>
-                        <th>Note</th>
-                        <th>Accepted</th>
-                        <th>Delivered</th>
-                        <th>Actions</th>
+                        <th>Proizvod</th>
+                        <th>Ime</th>
+                        <th>Prezime</th>
+                        <th>Broj telefona</th>
+                        <th>Adresa</th>
+                        <th>Napomena</th>
+                        <th>Prihvaćeno</th>
+                        <th>Dostavljeno</th>
+                        <th>Akcije</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,8 +44,8 @@
                         <td>{{ $order->phone_number }}</td>
                         <td>{{ $order->address }}</td>
                         <td>{{ $order->note }}</td>
-                        <td>{{ is_null($order->accepted) ? 'Processing' : ($order->accepted ? 'Yes' : 'No') }}</td>
-                        <td>{{ $order->delivered ? 'Yes' : 'No' }}</td>
+                        <td>{{ is_null($order->accepted) ? 'Obrada' : ($order->accepted ? 'Da' : 'Ne') }}</td>
+                        <td>{{ $order->delivered ? 'Da' : 'Ne' }}</td>
                         <td>
                             @if (is_null($order->accepted))
                                 <a href="/edit-order/{{$order->id}}" class="fas fa-pencil-alt text-primary mr-2 action-icons"></a>

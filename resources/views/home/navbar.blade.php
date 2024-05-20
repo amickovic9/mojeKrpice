@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,17 +22,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/all-products">Home</a>
+                        <a class="nav-link" href="/all-products">Početna</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/add-product">Add Product</a>
+                        <a class="nav-link" href="/add-product">Dodaj Proizvod</a>
                     </li>
                     @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
+                        <a class="nav-link" href="/login">Prijava</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
+                        <a class="nav-link" href="/register">Registracija</a>
                     </li>
                     @endguest
                     @auth
@@ -42,19 +42,19 @@
                         @endif
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/my-cart">My Cart</a>
+                        <a class="nav-link" href="/my-cart">Moja Korpa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/my-orders">My orders</a>
+                        <a class="nav-link" href="/my-orders">Moje Porudžbine</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/my-products">Products & Orders</a>
+                        <a class="nav-link" href="/my-products">Proizvodi i Porudžbine</a>
                     </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="/contact-us">Contact us<a>
+                        <a class="nav-link" href="/contact-us">Kontaktirajte nas<a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout</a>
+                        <a class="nav-link" href="/logout">Odjava</a>
                     </li>
                     @endauth
                 </ul>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Page</title>
+    <title>Stranica Proizvoda</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -19,12 +19,12 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->name }}</h5>
                     <p class="card-text">{{ $product->description }}</p>
-                    <p class="card-text">Size: {{ $product->size }}</p>
-                    <p class="card-text">Price: ${{ $product->price }}</p>
-                    <form action="/add-to-cart/{{$product->id}}" method ='post'>
+                    <p class="card-text">Veličina: {{ $product->size }}</p>
+                    <p class="card-text">Cena: ${{ $product->price }}</p>
+                    <form action="/dodaj-u-korpu/{{$product->id}}" method ='post'>
                     @csrf
                     @if($product->available)
-                    <button type='submit' >Add To Cart </button>
+                    <button type='submit' >Dodaj u korpu </button>
                     @endif
                     </form>
                 </div>

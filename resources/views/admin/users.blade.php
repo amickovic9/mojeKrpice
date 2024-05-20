@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users</title>
+    <title>Korisnici</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
@@ -33,33 +33,33 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="chart-container">
-                    <h2 class="chart-title">Users Overview</h2>
+                    <h2 class="chart-title">Pregled korisnika</h2>
                     <canvas id="userChart" class="user-chart"></canvas>
                 </div>
             </div>
             <div class="col-md-9">
-                <h2>Users</h2>
+                <h2>Korisnici</h2>
                 <div class="row mb-3">
                     <form action="" method="get">
                         <div class="col-md-6">
                             <!-- Dodavanje vrednosti pretrage u input polja -->
-                            <input type="text" class="form-control" name="username" placeholder="Search by Username" value="{{ isset($_GET['username']) ? $_GET['username'] : '' }}">
+                            <input type="text" class="form-control" name="username" placeholder="Pretraži po korisničkom imenu" value="{{ isset($_GET['username']) ? $_GET['username'] : '' }}">
                         </div>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="email" placeholder="Search by Email" value="{{ isset($_GET['email']) ? $_GET['email'] : '' }}">
+                            <input type="text" class="form-control" name="email" placeholder="Pretraži po email-u" value="{{ isset($_GET['email']) ? $_GET['email'] : '' }}">
                         </div>
-                        <button type="submit">Search</button>
+                        <button type="submit">Pretraži</button>
                     </form>
                 </div>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Username</th>
-                            <th>Name</th>
+                            <th>Korisničko ime</th>
+                            <th>Ime</th>
                             <th>Email</th>
                             <th>Admin</th>
-                            <th>Date of Registration</th>
-                            <th>Actions</th>
+                            <th>Datum registracije</th>
+                            <th>Akcije</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,7 +68,7 @@
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->firstName }} {{ $user->lastName }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->admin?"Yes":"No" }}</td>
+                            <td>{{ $user->admin?"Da":"Ne" }}</td>
                             <td>{{ $user->created_at }}</td>
                             <td>
                                 <a href="/admin/edit-user/{{$user->id}}" class="fas fa-pencil-alt text-primary action-icons"></a>
@@ -91,7 +91,7 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Users Created',
+                        label: 'Korisnici kreirani',
                         data: data,
                         borderColor: 'blue', 
                         backgroundColor: 'lightblue', 
