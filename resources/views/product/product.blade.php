@@ -21,7 +21,7 @@
                     <p class="card-text">{{ $product->description }}</p>
                     <p class="card-text">Veličina: {{ $product->size }}</p>
                     <p class="card-text">Cena: ${{ $product->price }}</p>
-                    <form action="/dodaj-u-korpu/{{$product->id}}" method ='post'>
+                    <form action="/add-to-cart/{{$product->id}}" method ='post'>
                     @csrf
                     @if($product->available)
                     <button type='submit' >Dodaj u korpu </button>

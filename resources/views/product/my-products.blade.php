@@ -75,7 +75,7 @@
                         <td>{{ $order->phone_number }}</td>
                         <td>{{ $order->address }}</td>
                         <td>{{ $order->note }}</td>
-                        <form id="" action="/azuriraj-narudzbinu/{{$order->id}}" method="POST">
+                        <form id="" action="/update-order/{{$order->id}}" method="POST">
                             @csrf
                             <input type="hidden" name="product_id" value ="{{$order->product_id}}">
                             <td>
