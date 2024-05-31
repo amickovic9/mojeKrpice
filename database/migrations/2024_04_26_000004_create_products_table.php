@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('size');
             $table->double('price');
             $table->string('image');
-            $table->boolean('available')->default(1);
+            $table->boolean('available')->default(true);
             $table->timestamps();
         });
     }
