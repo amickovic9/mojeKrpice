@@ -103,7 +103,7 @@
             </div>
         </form>
                         
-                <table class="table">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>ID Porudžbine</th>
@@ -122,7 +122,7 @@
                         @foreach ($orders as $order)
                         <tr>
                             <td>{{ $order->id }}</td>
-                            <td><a href="/admin/edit-user/{{$order->user_id}}">{{ $order->customer->firstName }} {{ $order->customer->lastName }}</a></td>
+                            <td><a href="/admin/edit-user/{{$order->user_id}}" style="color: #b22d64;">{{ $order->customer->firstName }} {{ $order->customer->lastName }}</a></td>
                             <td>{{ $order->address }}</td>
                             <td>{{ $order->phone_number }}</td> 
                             <td>{{ $order->product->price }}rsd</td>
