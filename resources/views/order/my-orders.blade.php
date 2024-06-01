@@ -11,6 +11,10 @@
             font-size: 1.2rem;
             cursor: pointer;
         }
+        thead{
+            background-color:#b22d64;
+            color:#fff;
+        }
     </style>
 </head>
 <body>
@@ -38,7 +42,7 @@
                 <tbody>
                     @foreach ($orders as $order)
                     <tr>
-                        <td><a href="/product/{{$order->id}}">{{ $order->product->name}}</a></td>
+                        <td><a href="/product/{{$order->id}}" style="color: #b22d64;">{{ $order->product->name}}</a></td>
                         <td>{{ $order->firstName }}</td>
                         <td>{{ $order->lastName }}</td>
                         <td>{{ $order->phone_number }}</td>

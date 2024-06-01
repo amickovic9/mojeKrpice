@@ -4,7 +4,7 @@ footer {
     z-index: 1000;
 }
 footer div {
-    background-color: #3C6A6F;
+    background-color: #b22d64;
     margin: -5px 0 0;
     padding: 0;
     color: #fff;
@@ -16,7 +16,7 @@ footer div {
   .wave {
     animation: wave 3s linear;
     animation-iteration-count:infinite;
-    fill: #17a2b8;
+    fill: #b22d64;
   }
   #wave2 {
     animation-duration:5s;

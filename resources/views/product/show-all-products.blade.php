@@ -80,7 +80,7 @@
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <p class="card-text">{{ $product->size }}</p>
                             <p class="card-text">{{ $product->price }} rsd</p>
-                            <a href="/proizvod/{{$product->id}}" class="btn btn-outline-dark">Prikaži više</a>
+                            <a href="/product/{{$product->id}}" class="btn btn-outline-dark">Prikaži više</a>
                         </div>
                     </div>
                 </div>
