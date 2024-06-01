@@ -82,7 +82,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="form-container text-white" style="border: 1px solid #000;">
+                <div class="form-container text-white" style="border: 1px solid #b22d64;">
                     <h1 class="text-center form-title">Forma za porudžbinu</h1>
                     <h2 class="text-center form-title mb-4">Ukupno: {{$total}} rsd</h2>
                     <form action="/submit-order" method="post">

@@ -14,7 +14,7 @@
         border-radius: 20px;
         background-color: #f2eef2;
         color: #512940;
-        border: 0.5px solid black;
+        border: 0.5px solid #b22d64;;
     }
 
     .title {
