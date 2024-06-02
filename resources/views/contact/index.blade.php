@@ -14,6 +14,17 @@
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
         }
+
+        .custom-btn {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #b22d64 !important;
+            color: #fff !important ;
+        }
+        .custom-btn:hover {
+            background-color: #512940 !important;
+            transition: .8s ease;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -34,7 +45,7 @@
                                 <label for="message">Poruka:</label>
                                 <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-outline-dark">Pošalji</button>
+                            <button type="submit" class="btn custom-btn">Pošalji</button>
                         </form>
                         <div class="row mt-5">
                             <div class="col-md-12">
@@ -43,7 +54,7 @@
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="title" placeholder="Pretraži po naslovu">
                                     </div>
-                                    <button type="submit" class="btn btn-outline-dark">Pretraži</button>
+                                    <button type="submit" class="btn custom-btn">Pretraži</button>
                                 </form>
                                 <h2 class="mt-5 mb-4">Moje poruke</h2>
                                 <ul class="list-group">
