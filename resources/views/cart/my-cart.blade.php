@@ -6,7 +6,15 @@
     <title>Moja Korpa</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
         .total-wrapper {
             display: flex;
             justify-content: flex-end;
@@ -16,6 +24,22 @@
         .product-image {
             max-width: 100px;
             height: auto;
+        }
+
+        .submit {
+            border: none;
+            outline: none;
+            padding: 8px 30px;
+            border-radius: 5px;
+            color: #fff !important;
+            font-size: 16px;
+            transform: .8s ease;
+            background-color: #b22d64 !important;
+        }
+        .submit:hover {
+            background-color: #512940 !important;
+            transition: .8s ease;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -46,7 +70,7 @@
                             <img src="{{ asset('uploads/' . $product->image) }}" class="product-image" alt="Slika Proizvoda">
                         </td>
                         <td class="text-right">
-                            <a href="/product/{{ $product->id }}" class="btn btn-outline-dark">Prikaži Proizvod</a>
+                            <a href="/product/{{ $product->id }}" class="btn submit">Prikaži Proizvod</a>
                         </td>
                         <td class="text-right">
                             <a href="/remove-from-cart/{{ $product->cart }}" class="btn btn-link text-danger"><i class="fas fa-times"></i></a>
@@ -63,7 +87,7 @@
                 <form action="/make-order" method="post">
                     @csrf
                     <input type="hidden" name="total" value={{$total}}>
-                    <button type="submit" class='btn btn-outline-dark'>Naruči</button>
+                    <button type="submit" class='btn submit'>Naruči</button>
                 </form>
             </div>
             @endif
