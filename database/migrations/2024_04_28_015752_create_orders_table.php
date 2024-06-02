@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('phone_number');
             $table->boolean('accepted')->default(false);
             $table->boolean('delivered')->nullable();
-            $table->string('note')->default(null);
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }
