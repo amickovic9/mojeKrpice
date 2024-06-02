@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Poruke</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .list-group-item a {
+            color: #010101;
+            text-decoration: none;
+        }
+        .submit {
+        border: none;
+        outline: none;
+        padding: 8px 30px;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 16px;
+        transform: .8s ease;
+        background-color: #b22d64;
+    }
+
+    .submit:hover {
+        background-color: #512940;
+        transition: .8s ease;
+        transform: scale(1.05);
+    }
+    </style>
 </head>
 <body>
     @include('home.navbar')
@@ -25,7 +47,7 @@
                             <input type="text" class="form-control" name="email" placeholder="Pretraži po email-u" value="{{ isset($_GET['email']) ? $_GET['email'] : '' }}">
                         </div>
                         <div class="col">
-                            <button type="submit" class="btn btn-primary">Pretraži</button>
+                            <button type="submit" class="submit">Pretraži</button>
                         </div>
                     </div>
                 </form>

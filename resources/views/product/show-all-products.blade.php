@@ -38,7 +38,7 @@
         <div class="col-md-4">
             <div class="input-group ">
                 <div class="input-container">
-                    <input type="text" id="input" name="search" class="form-control" aria-label="Search" aria-describedby="searchButton" value="{{ isset($_GET['search']) ? $_GET['search'] : '' }}" required="">
+                    <input type="text" id="input" name="search" class="form-control" aria-label="Search" aria-describedby="searchButton" value="{{ isset($_GET['search']) ? $_GET['search'] : '' }}" >
                     <label for="input" class="label">Pretraga</label>
                 <div class="underline"></div>
             </div>
