@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('phone_number');
-            $table->boolean('accepted')->default(false);
+            $table->boolean('accepted')->nullable()->default(null);
             $table->boolean('delivered')->nullable();
             $table->string('note')->nullable();
             $table->timestamps();
