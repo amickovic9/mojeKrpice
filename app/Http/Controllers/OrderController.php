@@ -54,7 +54,7 @@ class OrderController extends Controller
         }
         if ($order['accepted'] == false) {
             $product = Product::where('id', $order['product_id'])->first();
-            $product['available'] == true;
+            $product['available'] = true;
             $product->update();
         }
         $order->save();
