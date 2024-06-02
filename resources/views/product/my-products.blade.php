@@ -42,8 +42,8 @@
                         <td>${{ $product->price }}</td>
                         <td>{{ $product->available ? 'Da' : 'Ne' }}</td>
                         <td>
-                            <a href="/izmeni-proizvod/{{$product->id}}" class="fas fa-pencil-alt text-primary mr-2 ikonice-akcija"></a>
-                            <a href="/obrisi-proizvod/{{$product->id}}" class="fas fa-times text-danger ikonice-akcija"></a>
+                            <a href="/edit-product/{{$product->id}}" class="fas fa-pencil-alt text-primary mr-2 ikonice-akcija"></a>
+                            <a href="/delete-product/{{$product->id}}" class="fas fa-times text-danger ikonice-akcija"></a>
                         </td>
                     </tr>
                     @endforeach
