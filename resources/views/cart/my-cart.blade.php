@@ -80,7 +80,7 @@
                 </tbody>
             </table>
             <div class="total-wrapper">
-                <strong>Ukupno: ${{ $total }}</strong>
+                <strong>Ukupno: RSD   {{ $total }}</strong>
             </div>
             @if($total>1)
             <div class="text-right mt-3">
