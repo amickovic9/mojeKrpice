@@ -46,18 +46,18 @@
         </div>
         <div class="col-md-4">
             <div class="input-group">
-                <select class="form-select" id="sortBy" name="sortBy">
-                    <option value="none" {{ !isset($_GET['sortBy']) ? 'selected' : '' }}>Sortiraj</option>
-                    <option value="Datum-najstariji" {{ isset($_GET['sortBy']) && $_GET['sortBy'] == 'date_asc' ? 'selected' : '' }}>Datum - Najstariji</option>
-                    <option value="Datum-najnoviji" {{ isset($_GET['sortBy']) && $_GET['sortBy'] == 'date_desc' ? 'selected' : '' }}>Datum - Najnoviji</option>
-                    <option value="Cena-najniza" {{ isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_asc' ? 'selected' : '' }}>Cena - Najniža</option>
-                    <option value="Cena-najvisa" {{ isset($_GET['sortBy']) && $_GET['sortBy'] == 'price_desc' ? 'selected' : '' }}>Cena - Najviša</option>
+                <select class="form-select" id="sort" name="sort">
+                    <option value="none" {{ !isset($_GET['sort']) ? 'selected' : '' }}>Sortiraj</option>
+                    <option value="date_asc" {{ isset($_GET['sort']) && $_GET['sort'] == 'date_asc' ? 'selected' : '' }}>Datum - Najstariji</option>
+                    <option value="date_desc" {{ isset($_GET['sort']) && $_GET['sort'] == 'date_desc' ? 'selected' : '' }}>Datum - Najnoviji</option>
+                    <option value="price_asc" {{ isset($_GET['sort']) && $_GET['sort'] == 'price_asc' ? 'selected' : '' }}>Cena - Najniža</option>
+                    <option value="price_desc" {{ isset($_GET['sort']) && $_GET['sort'] == 'price_desc' ? 'selected' : '' }}>Cena - Najviša</option>
                 </select>
             </div>
         </div>
         <div class="col-md-4">
             <div class="input-container">
-                <input type="text" id="size" name="size" class="form-control" aria-label="Size" value="{{ isset($_GET['size']) ? $_GET['size'] : '' }}" required="">
+                <input type="text" id="size" name="size" class="form-control" aria-label="Size" value="{{ isset($_GET['size']) ? $_GET['size'] : '' }}">
                 <label for="size" class="label">Veličina</label>
             <div class="underline"></div>
         </div>
