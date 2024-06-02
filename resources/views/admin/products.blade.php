@@ -16,6 +16,21 @@
             height: 80px;
             cursor: pointer; 
         }
+        .submit {
+            border: none;
+            outline: none;
+            padding: 8px 30px;
+            border-radius: 5px;
+            color: #fff !important;
+            font-size: 16px;
+            transform: .8s ease;
+            background-color: #b22d64 !important;
+        }
+        .submit:hover {
+            background-color: #512940 !important;
+            transition: .8s ease;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -30,7 +45,6 @@
             </div>
             <div class="col-md-12">
                 <h2>Proizvodi</h2>
-                <!-- Forma za pretragu -->
                 <form action="" method="GET">
                     <div class="row mb-3">
                         <div class="col-md-4">
@@ -40,11 +54,10 @@
                             <input type="text" class="form-control" id="searchSize" name="size" placeholder="Pretraži po Veličini" value="{{ isset($_GET['size']) ? $_GET['size'] : '' }}">
                         </div>
                         <div class="col-md-4">
-                            <button type="submit" class="btn btn-primary">Pretraži</button>
+                            <button type="submit" class="btn btn-primary submit">Pretraži</button>
                         </div>
                     </div>
                 </form>
-                <!-- Kraj forme za pretragu -->
                 <table class="table">
                     <thead>
                         <tr>
