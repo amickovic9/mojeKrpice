@@ -21,7 +21,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'Lagana, lepršava haljina savršena za leto.',
                 'size' => 'M',
                 'price' => 3500,
-                'image' => 'https://images.pexels.com/photos/1082523/pexels-photo-1082523.jpeg'
+                'image' => '/img/haljina.jpg'
             ],
             [
                 'user_id' => 1,
