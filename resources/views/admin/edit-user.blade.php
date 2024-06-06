@@ -152,6 +152,10 @@
                                 <input type="checkbox" class="form-check-input" id="orderBlock" name="orderBlock" value="1" {{$user->orderBlock ? 'checked' : ''}}>
                                 <label class="form-check-label" for="orderBlock">Blokiraj porudžbine</label>
                             </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="contactBlock" name="contactBlock" value="1" {{$user->contactBlock ? 'checked' : ''}}>
+                                <label class="form-check-label" for="contactBlock">Blokiraj poruke</label>
+                            </div>
                             <button type="submit" class="submit">Sačuvaj izmene</button>
                         </form>
                     </div>

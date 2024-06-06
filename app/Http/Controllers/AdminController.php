@@ -78,10 +78,10 @@ class AdminController extends Controller
 
     {
         $query = User::query();
-        if(isset($request->email))
-            $query = $query->where('email','like','%'.$request->email.'%');
-        if(isset($request->username))
-            $query = $query->where('username','like', '%'.$request->username.'%');
+        if (isset($request->email))
+            $query = $query->where('email', 'like', '%' . $request->email . '%');
+        if (isset($request->username))
+            $query = $query->where('username', 'like', '%' . $request->username . '%');
 
         $users = $query->get();
         $thirtyDaysAgo = Carbon::now()->subDays(30);
@@ -111,11 +111,11 @@ class AdminController extends Controller
     public function showProductsPage(Request $request)
     {
         $query = Product::query();
-        if(isset($request->name))
-            $query = $query->where('name','like','%'.$request->name.'%');
-        if(isset($request->size))
-            $query = $query->where('size','like', $request->size);
-        $products=$query->get();
+        if (isset($request->name))
+            $query = $query->where('name', 'like', '%' . $request->name . '%');
+        if (isset($request->size))
+            $query = $query->where('size', 'like', $request->size);
+        $products = $query->get();
         $sevenDaysAgo = Carbon::now()->subDays(7);
         $dates = [];
         for ($i = 0; $i < 7; $i++) {
@@ -190,6 +190,7 @@ class AdminController extends Controller
         $user['lastName'] = $request->input('lastName');
         $user['email'] = $request->input('email');
         $user['admin'] = $request->input('admin');
+        $user['contactBlock'] = $request->input('contactBlock');
         if (isset($request->productBlock)) {
             $user['productBlock'] = $request->input('productBlock');
         } else {
@@ -205,6 +206,11 @@ class AdminController extends Controller
         } else {
             $user['admin'] = false;
         }
+        if (isset($request->contactBlock)) {
+            $user['contactBlock'] = $request->input('contactBlock');
+        } else {
+            $user['contactBlock'] = false;
+        }
 
 
         $user->update();
@@ -213,10 +219,10 @@ class AdminController extends Controller
     public function showOrdersPage(Request $request)
     {
         $query = Order::Query();
-        if(isset($request->phone)){
-            $query=$query->where('phone_number', 'like', '%'.$request->phone.'%');
+        if (isset($request->phone)) {
+            $query = $query->where('phone_number', 'like', '%' . $request->phone . '%');
         }
-        $orders=$query->get();
+        $orders = $query->get();
         $sevenDaysAgo = Carbon::now()->subDays(7);
         $dates = [];
         for ($i = 0; $i < 7; $i++) {
@@ -286,26 +292,26 @@ class AdminController extends Controller
     public function showMessagesPage(Request $request)
     {
         $query = ContactMessages::orderBy('read')->orderBy('created_at', 'asc');
-    
-        if(isset($request->title)){
-            $query = $query->where('title', 'like', '%'.$request->title.'%');
+
+        if (isset($request->title)) {
+            $query = $query->where('title', 'like', '%' . $request->title . '%');
         }
-    
+
         if (isset($request->username) || isset($request->email)) {
-            $query = $query->whereHas('user', function($q) use($request) {
+            $query = $query->whereHas('user', function ($q) use ($request) {
                 if (isset($request->username)) {
-                    $q->where('username', 'like', '%'.$request->username.'%');
+                    $q->where('username', 'like', '%' . $request->username . '%');
                 }
                 if (isset($request->email)) {
-                    $q->where('email', 'like', '%'.$request->email.'%');
+                    $q->where('email', 'like', '%' . $request->email . '%');
                 }
             });
         }
-    
+
         $messages = $query->get();
         return view('admin.messages', ['messages' => $messages]);
     }
-    
+
     public function showMessage(ContactMessages $message)
     {
         $message['read'] = true;
