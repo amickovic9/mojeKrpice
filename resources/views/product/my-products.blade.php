@@ -7,15 +7,38 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        .slika-proizvoda {
-            width: 50px;
-            height: auto;
-        }
-        .ikonice-akcija {
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-    </style>
+    .slika-proizvoda {
+        width: 50px;
+        height: auto;
+    }
+    .ikonice-akcija {
+        font-size: 1.2rem;
+        cursor: pointer;
+    }
+    .submit {
+        border: none;
+        outline: none;
+        padding: 8px 30px;
+        border-radius: 5px;
+        color: #fff;
+        font-size: 16px;
+        transform: .8s ease;
+        background-color: #b22d64 !important;
+        margin-bottom: 5px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .submit:hover {
+        background-color: #512940 !important;
+        transition: .8s ease;
+        transform: scale(1.05);
+    }
+    table tr {
+        background-color: #b22d64;
+        color: #fff;
+    }
+</style>
 </head>
 <body>
     @include('home.navbar')
@@ -93,7 +116,7 @@
                                 </select>
                             </td>
                             <td>
-                                <button type="submit" class="btn btn-primary btn-sm">Ažuriraj</button>
+                                <button type="submit" class="btn btn-primary btn-sm submit">Ažuriraj</button>
                             </td>
                         </form>
                     </tr>
@@ -106,3 +129,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+@include('footer')
