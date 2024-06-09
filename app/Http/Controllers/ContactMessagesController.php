@@ -11,7 +11,7 @@ class ContactMessagesController extends Controller
     public function showContactUsPage(Request $request)
     {
         if(Auth::user()->contactBlock){
-            return redirect('/all-products')->with('danger','You are blocked! Contact our team for more information!');
+            return redirect('/all-products')->with('danger','Blokirani ste! Kontaktirajte naš tim za više informacija!');
         }
         $user = Auth::user();
         $messages = $user->contactMessages()->orderBy('created_at', 'desc');
@@ -27,7 +27,7 @@ class ContactMessagesController extends Controller
     public function createContactMessage(Request $request)
     {
         if(Auth::user()->contactBlock){
-            return redirect('/all-products')->with('danger','You are blocked! Contact our team for more information!');
+            return redirect('/all-products')->with('danger','Blokirani ste! Kontaktirajte naš tim za više informacija!');
         }
         $contact = $request->validate([
             'title' => 'required',
@@ -35,7 +35,7 @@ class ContactMessagesController extends Controller
         ]);
         $contact['user_id'] = Auth::user()->id;
         $contactMessage = ContactMessages::create($contact);
-        return redirect("/contact-us/{$contactMessage->id}")->with('success', 'You have successfully sent your message');
+        return redirect("/contact-us/{$contactMessage->id}")->with('success', 'Uspešno ste poslali poruku!');
     }
  
     public function showContactMessage(ContactMessages $contact)

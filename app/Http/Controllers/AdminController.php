@@ -146,7 +146,7 @@ class AdminController extends Controller
         }
 
         $product->delete();
-        return redirect()->back()->with('success', 'You have successfully deleted product!');
+        return redirect()->back()->with('success', 'Uspešno ste obrisali produkt!');
     }
     public function showEditProductPage(Product $product)
     {
@@ -172,12 +172,12 @@ class AdminController extends Controller
         $product->price = $request->input('price');
         $product->available = $request->input('available');
         $product->save();
-        return redirect('/admin/products')->with('success', 'You have successfully edited product!');
+        return redirect('/admin/products')->with('success', 'Uspešno ste izmenili produkt!');
     }
     public function deleteUser(User $user)
     {
         $user->delete();
-        return redirect()->back()->with('success', 'You have successfully deleted user!');
+        return redirect()->back()->with('success', 'Uspešno ste obrisali korisnika!');
     }
     public function showEditUserPage(User $user)
     {
@@ -214,7 +214,7 @@ class AdminController extends Controller
 
 
         $user->update();
-        return redirect('/admin/users')->with('success', 'You have successfully updated user!');
+        return redirect('/admin/users')->with('success', 'Uspešno ste ažurirali korisnika!');
     }
     public function showOrdersPage(Request $request)
     {
@@ -258,7 +258,7 @@ class AdminController extends Controller
     public function deleteOrder(Order $order)
     {
         $order->delete();
-        return redirect()->back()->with('success', 'You have successfully deleted a order!');
+        return redirect()->back()->with('success', 'Uspešno ste izbrisali porudžbinu!');
     }
     public function showEditOrderPage(Order $order)
     {
@@ -287,7 +287,7 @@ class AdminController extends Controller
 
         $order->save();
 
-        return redirect('/admin/orders')->with('success', 'Order updated successfully');
+        return redirect('/admin/orders')->with('success', 'Uspešno ste ažurirali porudžbinu!');
     }
     public function showMessagesPage(Request $request)
     {

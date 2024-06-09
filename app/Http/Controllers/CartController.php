@@ -15,10 +15,10 @@ class CartController extends Controller
         $cart['product_id'] = $product->id;
         $existingCart = Cart::where('user_id', $cart['user_id'])->where('product_id', $cart['product_id'])->first();
         if($existingCart){
-            return redirect()->back()->with('danger','You have already added this item to cart!');
+            return redirect()->back()->with('danger','Već ste dodali ovaj proizvod u korpu!');
         }
         Cart::create($cart);
-        return redirect()->back()->with('success', 'Succesfully added to cart');
+        return redirect()->back()->with('success', 'Uspešno ste dodali proizvod u korpu!');
     }
     public function showMyCart()
     {

@@ -14,7 +14,7 @@ class OrderController extends Controller
     public function showMakeOrderPage(Request $request)
     {
         if (Auth::user()->orderBlock == true) {
-            return redirect('/all-products')->with('danger', 'You can not order products anymore!');
+            return redirect('/all-products')->with('danger', 'Ne možete praviti porudžbine! Kontaktirajte naš tim za više informacija!');
         }
         $total = $request->total;
         return view('order.make-order', ['total' => $total]);
@@ -41,7 +41,7 @@ class OrderController extends Controller
             $product->update();
             $cart->delete();
         }
-        return redirect('/all-products')->with('success', 'You have placed order succesfully!');
+        return redirect('/all-products')->with('success', 'Uspešno ste napravili porudžbinu!');
     }
     public function updateOrder(Request $request, Order $order)
     {
@@ -69,7 +69,7 @@ class OrderController extends Controller
     public function showEditOrderPage(Order $order)
     {
         if ($order->user_id != Auth::user()->id || $order->accepted !== null) {
-            return redirect("/my-orders")->with('danger', 'You can edit only your orders!');
+            return redirect("/my-orders")->with('danger', 'Možete menjati samo svoje porudžbine!');
         }
         return view('order.edit-order', ['order' => $order]);
     }
@@ -78,7 +78,7 @@ class OrderController extends Controller
         $order = Order::where('id', $request->input('id'))->first();
 
         if ($order->user_id != Auth::user()->id) {
-            return redirect("/my-orders")->with('danger', 'You can edit only your orders and orders that are not accepted!');
+            return redirect("/my-orders")->with('danger', 'Možete menjati samo svoje porudžbine!');
         }
         $order['firstName'] = $request->input('firstName');
         $order['lastName'] = $request->input('lastName');
@@ -86,18 +86,18 @@ class OrderController extends Controller
         $order['address'] = $request->input('address');
         $order['note'] = $request->input('note');
         $order->update();
-        return redirect("/my-orders")->with('success', 'You have successfully edited your order!');
+        return redirect("/my-orders")->with('success', 'Uspešno ste izmenili porudžbinu!');
     }
     public function deleteOrder(Order $order)
     {
         if ($order->user_id != Auth::user()->id || $order->accepted !== null) {
-            return redirect("/my-orders")->with('danger', 'You can delete only not accepted and your orders!');
+            return redirect("/my-orders")->with('danger', 'Možete brisati samo svoje porudžbine!, ili porudžbine koje nisu prihvaćene!');
         }
         $product = $order->product->first();
         $product['available'] = true;
         $product->update();
 
         $order->delete();
-        return redirect("/my-orders")->with('success', 'You have deleted your order!');
+        return redirect("/my-orders")->with('success', 'Izbirsali ste svoju porudžbinu!');
     }
 }

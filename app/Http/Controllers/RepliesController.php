@@ -12,7 +12,7 @@ class RepliesController extends Controller
     public function addReply(Request $request)
     {
         if(Auth::user()->contactBlock){
-            return redirect('/all-products')->with('danger','You are blocked! Contact our team for more information!');
+            return redirect('/all-products')->with('danger','Blokirani ste! Kontaktirajte naš tim za više informacija!');
         }
         $reply = $request->validate([
             'reply' => 'required',

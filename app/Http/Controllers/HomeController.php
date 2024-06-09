@@ -37,13 +37,13 @@ class HomeController extends Controller
         ]);
         $user['password'] = bcrypt($user['password']);
         if ($this->notUniqueEmail($user['email'])) {
-            return redirect()->back()->with('danger', 'That email is already taken!');
+            return redirect()->back()->with('danger', 'Email je već zauzet!');
         }
         if ($this->notUniqueUsername($user['username'])) {
-            return redirect()->back()->with('danger', 'That username is already taken!');
+            return redirect()->back()->with('danger', 'Username je već zauzet!');
         }
         User::create($user);
-        return redirect('/')->with('success', 'Registration successful');
+        return redirect('/')->with('success', 'Uspešno ste se registrovali! Sada se možete prijaviti!');
     }
     public function showLoginPage()
     {
@@ -61,9 +61,9 @@ class HomeController extends Controller
                 return redirect()->intended();
             }
 
-            return redirect("/")->with('success', 'You are logged in!');
+            return redirect("/")->with('success', 'Već ste prijavljeni!');
         } else {
-            return redirect()->back()->with('danger', 'Wrong username or password, please try again!');
+            return redirect()->back()->with('danger', 'Pogrešan username ili password!, pokušajte ponovo!');
         }
     }
     public function logout()

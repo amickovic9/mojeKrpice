@@ -16,14 +16,14 @@ class ProductController extends Controller
     public function showAddProductPage()
     {
         if (Auth::user()->productBlock == true) {
-            return redirect('/all-products')->with('danger', 'You can not post products anymore! Contact our admins fore more information!');
+            return redirect('/all-products')->with('danger', 'Ne možete dodavati proizvode! Kontaktirajte naš tim za više informacija!');
         }
         return view('product.add-product');
     }
     public function addProduct(Request $request)
     {
         if (Auth::user()->productBlock == true) {
-            return redirect('/')->with('danger', 'You can not post products anymore! Contact our admins fore more information!');
+            return redirect('/')->with('danger', 'Ne možete dodavati proizvode! Kontaktirajte naš tim za više informacija!');
         }
         $product = $request->validate([
             'name' => 'required',
@@ -40,7 +40,7 @@ class ProductController extends Controller
         }
         $product['user_id'] = Auth::id();
         Product::create($product);
-        return redirect('/')->with('success', 'You have succesfully posted your product!');
+        return redirect('/')->with('success', 'Uspešno ste dodali proizvod!');
     }
     public function showAllProducts(Request $request)
     {
@@ -106,7 +106,7 @@ class ProductController extends Controller
     public function deleteProduct(Product $product)
     {
         if ($product->user_id != Auth::user()->id) {
-            return redirect('/my-products')->with('danger', 'You can delete only your products!');
+            return redirect('/my-products')->with('danger', 'Možete brisati samo svoje proizvode!');
         }
         $imagePath = public_path('uploads/' . $product->image);
 
@@ -116,12 +116,12 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return redirect()->back()->with('success', 'Product deleted successfully.');
+        return redirect()->back()->with('success', 'Proizvod uspešno obrisan!');
     }
     public function showEditProductPage(Product $product)
     {
         if ($product->user_id != Auth::user()->id) {
-            return redirect('/my-products')->with('danger', 'You can edit only your products!');
+            return redirect('/my-products')->with('danger', 'Možete menjati samo svoje proizvode!');
         }
         return view('product.edit-product', ['product' => $product]);
     }
@@ -146,6 +146,6 @@ class ProductController extends Controller
         $product->available = $request->input('available');
         $product->save();
 
-        return redirect('/my-products')->with('success', 'Product updated successfully.');
+        return redirect('/my-products')->with('success', 'Proizvod uspešno izmenjen!');
     }
 }
