@@ -35,7 +35,7 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="card">
-                <img src="{{ asset('uploads/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+            <img src="{{ $product->image }}" class="card-img-top" alt="{{ $product->name }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->name }}</h5>
                     <p class="card-text">{{ $product->description }}</p>
