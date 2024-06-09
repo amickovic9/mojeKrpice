@@ -73,7 +73,7 @@
                     <tbody>
                         @foreach ($products as $product)
                         <tr>
-                            <td><a href="/product/{{ $product->id }}"><img src="{{ asset('uploads/' . $product->image) }}" alt="Slika Proizvoda" class="product-image"></a></td>
+                        <td><a href="/product/{{ $product->id }}"><img src="{{ $product->image }}" alt="Slika Proizvoda" class="product-image"></a></td>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->description }}</td>
                             <td>{{ $product->size }}</td>
