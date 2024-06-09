@@ -22,7 +22,7 @@
             transition: .8s ease;
             transform: scale(1.05);
         }
-        </style>
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -33,10 +33,10 @@
                         <h4>Dodaj stavku</h4>
                     </div>
                     <div class="card-body">
-                        <form action="/add-product" method="post" enctype="multipart/form-data">
+                        <form id="productForm" action="/add-product" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
                             @csrf
                             <div class="mb-3">
-                                <label for="name" class="form-label">Ime proizvoda</label>
+                                <label for="name" class="form-label">Naziv proizvoda</label>
                                 <input type="text" id="name" name="name" class="form-control" required>
                             </div>
                             <div class="mb-3">
@@ -50,20 +50,31 @@
                            
                             <div class="mb-3">
                                 <label for="contact" class="form-label">Cena u RSD</label>
-                                <input type="text" id="contact" name="price" class="form-control" required>
+                                <input type="text" id="price" name="price" class="form-control" required>
                             </div>
                             <div class="mb-3">
                                 <label for="image" class="form-label">Slika</label>
                                 <input type="file" id="image" name="image" class="form-control" required>
                             </div>
                             
-                            <button type="submit" class="btn submit" style="margin-left:40%">Potvrdi</button>                        </form>
+                            <button type="submit" class="btn submit" style="margin-left:40%">Potvrdi</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function validateForm() {
+            const price = document.getElementById('price').value;
+            if (isNaN(price) || price.trim() === "") {
+                alert('Cena mora biti u formatu broja.');
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 @include('footer')
 </html>
