@@ -23,8 +23,8 @@ class OrdersTableSeeder extends Seeder
             $updated_at = $faker->dateTimeBetween($created_at, 'now');
 
             DB::table('orders')->insert([
-                'user_id' => $faker->numberBetween(1, 10), // Assuming you have 10 users
-                'product_id' => $faker->numberBetween(1, 20), // Assuming you have 20 products
+                'user_id' => $faker->numberBetween(1, 10),
+                'product_id' => $faker->numberBetween(1, 20),
                 'address' => $faker->address,
                 'firstName' => $faker->firstName,
                 'lastName' => $faker->lastName,
