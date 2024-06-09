@@ -21,7 +21,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'Lagana, lepršava haljina savršena za leto.',
                 'size' => 'M',
                 'price' => 3500,
-                'image' => '/img/haljina.jpg'
+                'image' => 'haljina.jpg'
             ],
             [
                 'user_id' => 1,

@@ -27,6 +27,11 @@
             box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
             transform: translateY(-5px);
         }
+        .card-img-top {
+            object-fit: cover;
+            height: 200px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -34,50 +39,48 @@
         <h2 class="text-center mb-4">Naši Proizvodi</h2>
 
         <form method="GET" action="" class="mb-4">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="input-group ">
-                <div class="input-container">
-                    <input type="text" id="input" name="search" class="form-control" aria-label="Search" aria-describedby="searchButton" value="{{ isset($_GET['search']) ? $_GET['search'] : '' }}" >
-                    <label for="input" class="label">Pretraga</label>
-                <div class="underline"></div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-container">
+                            <input type="text" id="input" name="search" class="form-control" aria-label="Search" aria-describedby="searchButton" value="{{ isset($_GET['search']) ? $_GET['search'] : '' }}">
+                            <label for="input" class="label">Pretraga</label>
+                            <div class="underline"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <select class="form-select" id="sort" name="sort">
+                            <option value="none" {{ !isset($_GET['sort']) ? 'selected' : '' }}>Sortiraj</option>
+                            <option value="date_asc" {{ isset($_GET['sort']) && $_GET['sort'] == 'date_asc' ? 'selected' : '' }}>Datum - Najstariji</option>
+                            <option value="date_desc" {{ isset($_GET['sort']) && $_GET['sort'] == 'date_desc' ? 'selected' : '' }}>Datum - Najnoviji</option>
+                            <option value="price_asc" {{ isset($_GET['sort']) && $_GET['sort'] == 'price_asc' ? 'selected' : '' }}>Cena - Najniža</option>
+                            <option value="price_desc" {{ isset($_GET['sort']) && $_GET['sort'] == 'price_desc' ? 'selected' : '' }}>Cena - Najviša</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-container">
+                        <input type="text" id="size" name="size" class="form-control" aria-label="Size" value="{{ isset($_GET['size']) ? $_GET['size'] : '' }}">
+                        <label for="size" class="label">Veličina</label>
+                        <div class="underline"></div>
+                    </div>
+                </div>
             </div>
+            <div class="col-md-4" style="margin-top: 20px; margin-left: 45%;">
+                <div class="input-group">
+                    <button type="submit" class="btn btn-outline-dark" style="width: 150px;">Pretraga</button>
+                </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="input-group">
-                <select class="form-select" id="sort" name="sort">
-                    <option value="none" {{ !isset($_GET['sort']) ? 'selected' : '' }}>Sortiraj</option>
-                    <option value="date_asc" {{ isset($_GET['sort']) && $_GET['sort'] == 'date_asc' ? 'selected' : '' }}>Datum - Najstariji</option>
-                    <option value="date_desc" {{ isset($_GET['sort']) && $_GET['sort'] == 'date_desc' ? 'selected' : '' }}>Datum - Najnoviji</option>
-                    <option value="price_asc" {{ isset($_GET['sort']) && $_GET['sort'] == 'price_asc' ? 'selected' : '' }}>Cena - Najniža</option>
-                    <option value="price_desc" {{ isset($_GET['sort']) && $_GET['sort'] == 'price_desc' ? 'selected' : '' }}>Cena - Najviša</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="input-container">
-                <input type="text" id="size" name="size" class="form-control" aria-label="Size" value="{{ isset($_GET['size']) ? $_GET['size'] : '' }}">
-                <label for="size" class="label">Veličina</label>
-            <div class="underline"></div>
-        </div>
-    </div>
-</div>
-<div class="col-md-4" style="margin-top: 20px; margin-left: 45%;">
-    <div class="input-group">
-        <button type="submit" class="btn btn-outline-dark" style="width: 150px;">Pretraga</button>
-    </div>
-</div>
-</form>
-
-
+        </form>
 
         <div class="row">
             @foreach ($products as $product)
                 <div class="col-md-4 mb-4">
-                    <div class="card"style="border: 1px solid black;">
-                        <img src="{{ $product->image }}" class="card-img-top" alt="Slika Proizvoda">                        
-                            <div class="card-body">
+                    <div class="card" style="border: 1px solid black;">
+                        <img src="{{ $product->image }}" class="card-img-top" alt="Slika Proizvoda">
+                        <div class="card-body">
                             <h5 class="card-title">{{ $product->name }}</h5>
                             <p class="card-text">{{ $product->size }}</p>
                             <p class="card-text">{{ $product->price }} rsd</p>
